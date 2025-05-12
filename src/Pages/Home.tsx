@@ -13,11 +13,12 @@ const Home: React.FC = () => {
       <div className="font-montserrat min-h-screen">
         <div className="relative min-h-screen w-full pb-40">
           <video
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             src={Vid} // Replace with the actual path to your video
             autoPlay
             loop
             muted
+            playsInline
           />
           <div className="absolute inset-0 bg-black opacity-70" />
           <div className="relative z-10">
