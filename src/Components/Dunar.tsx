@@ -58,7 +58,7 @@ const dunar = [dunar1, dunar2, dunar3];
 const Dunar: React.FC = () => {
   return (
     <motion.div
-      className='flex flex-col justify-center items-center text-center mt-12 px-4 md:px-0'
+      className='flex flex-col justify-center items-center text-center pt-10 px-4 md:px-0'
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
