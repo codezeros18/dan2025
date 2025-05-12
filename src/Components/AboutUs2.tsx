@@ -63,17 +63,26 @@ const AboutUs2: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentDesc, setCurrentDesc] = useState('');
 
-  const itemSize = 160;
+  const [itemSize, setItemSize] = useState(160);
+
 
   useEffect(() => {
-    const handleResize = () => {
-      const screenWidth = window.innerWidth;
-      setRadius(screenWidth < 768 ? 140 : 260);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const handleResize = () => {
+    const screenWidth = window.innerWidth;
+
+    if (screenWidth < 768) {
+      setRadius(140);
+      setItemSize(100);
+    } else {
+      setRadius(280);
+      setItemSize(200);
+    }
+  };
+
+  handleResize(); // initial
+  window.addEventListener('resize', handleResize);
+  return () => window.removeEventListener('resize', handleResize);
+}, []);
 
   const positions = useMemo(() => {
     const angleStep = (2 * Math.PI) / divisions.length;
