@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://codezeros18.github.io/dunar",
+  "homepage": "https://codezeros18.github.io/dan2025",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
