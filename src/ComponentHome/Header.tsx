@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Vid from '../assets/vid1.mp4';
 import img from '../assets/logo6.webp';
@@ -21,22 +22,22 @@ const Header: React.FC = () => {
   const nextRef = React.useRef<HTMLButtonElement>(null);
   const slides = [
     {
-  title: "DGTS 2025",
+  title: "ANW 2025",
   desc: "Spreading awareness about drugs and anti-drugs to high school students.",
   button: "Explore Now",
-  link: "#"
+  link: "/proker"
 },
 {
-  title: "Donations 2025",
+  title: "DGTS 2025",
   desc: "Contribute and make a difference through our donation program.",
   button: "Donate Today",
-  link: "#"
+  link: "/proker"
 },
 {
-  title: "Orphanage Visit 2025",
+  title: "AWARDING NIGHT 2025",
   desc: "Share kindness and support by joining our orphanage visits.",
   button: "Join Us",
-  link: "#"
+  link: "/proker"
 }
 
   ];
@@ -60,68 +61,66 @@ const Header: React.FC = () => {
         {/* Right Video Column */}
         <div className="relative max-w-full md:max-w-[350px] lg:max-w-[450px] mx-auto order-2 md:order-1">
       <Swiper
-        modules={[Navigation, Pagination, Autoplay]}
-        pagination={{ clickable: true }}
-        autoplay={{ delay: 4000 }}
-        loop
-        navigation={
-          {
-            prevEl: prevRef.current,
-            nextEl: nextRef.current,
-          } as NavigationOptions
-        }
-        onBeforeInit={(swiper) => {
-          // assign tombol sebelum init
-          if (swiper.params.navigation && typeof swiper.params.navigation === 'object') {
-            (swiper.params.navigation as NavigationOptions).prevEl = prevRef.current;
-            (swiper.params.navigation as NavigationOptions).nextEl = nextRef.current;
-          }
-        }}
-        className="rounded-2xl shadow-lg overflow-hidden"
-      >
-        {slides.map((item, index) => (
-          <SwiperSlide key={index}>
-            <div
-              className="flex flex-col items-center justify-center text-white p-8 md:p-10 rounded-2xl min-h-[250px] 
-                        bg-gradient-to-r from-cyan-500/50 via-blue-500/50 to-indigo-500/50 
-                        backdrop-blur-md shadow-lg"
-            >
-              <h2 className="text-xl md:text-2xl font-extrabold mb-3 text-center leading-snug drop-shadow-md">
-                {item.title}
-              </h2>
-              <p className="mb-6 text-center text-base md:text-lg opacity-90">
-                {item.desc}
-              </p>
-<a
-  href={item.link}
-  className="px-6 py-2 rounded-full font-semibold text-white shadow-md 
-             bg-gradient-to-r from-cyan-500/80 via-blue-500/80 to-indigo-500/80
-
-             hover:shadow-xl hover:scale-105 transition-all duration-300"
+  modules={[Navigation, Pagination, Autoplay]}
+  pagination={{ clickable: true }}
+  autoplay={{ delay: 4000 }}
+  loop
+  navigation={{
+    prevEl: prevRef.current,
+    nextEl: nextRef.current,
+  } as NavigationOptions}
+  onBeforeInit={(swiper) => {
+    if (swiper.params.navigation && typeof swiper.params.navigation === "object") {
+      (swiper.params.navigation as NavigationOptions).prevEl = prevRef.current;
+      (swiper.params.navigation as NavigationOptions).nextEl = nextRef.current;
+    }
+  }}
+  className="rounded-2xl shadow-lg relative overflow-visible" // ⬅️ ini penting
 >
-  {item.button}
-</a>
-
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-
-      {/* Tombol di luar slider */}
-      <button
-        ref={prevRef}
-        className="absolute top-1/2 -left-2 md:-left-12 z-20 -translate-y-1/2 bg-white text-blue-700 
-                   rounded-full p-2 shadow-md hover:scale-110 transition cursor-pointer"
+  {slides.map((item, index) => (
+    <SwiperSlide key={index}>
+      <div
+        className="flex flex-col items-center justify-center text-white p-8 md:p-10 rounded-2xl min-h-[250px] 
+                   bg-gradient-to-r from-cyan-500/50 via-blue-500/50 to-indigo-500/50 
+                   backdrop-blur-md shadow-lg"
       >
-        <ChevronLeft className="w-6 h-6" />
-      </button>
-      <button
-        ref={nextRef}
-        className="absolute top-1/2 -right-2 md:-right-12 z-20 -translate-y-1/2 bg-white text-blue-700 
-                   rounded-full p-2 shadow-md hover:scale-110 transition cursor-pointer"
-      >
-        <ChevronRight className="w-6 h-6" />
-      </button>
+        <h2 className="text-xl md:text-2xl font-extrabold mb-3 text-center leading-snug drop-shadow-md">
+          {item.title}
+        </h2>
+        <p className="mb-6 text-center text-base md:text-lg opacity-90">
+          {item.desc}
+        </p>
+        <Link
+          to={item.link}
+          className="px-6 py-2 rounded-full font-semibold text-white shadow-md 
+                     bg-gradient-to-r from-cyan-500/80 via-blue-500/80 to-indigo-500/80
+                     hover:shadow-xl hover:scale-105 transition-all duration-300"
+        >
+          {item.button}
+        </Link>
+      </div>
+    </SwiperSlide>
+  ))}
+
+  {/* Tombol Navigasi */}
+  <button
+    ref={prevRef}
+    className="absolute top-1/2 -left-0 z-20 -translate-y-1/2 
+               bg-white text-blue-700 rounded-full p-2 shadow-md 
+               hover:scale-110 transition cursor-pointer"
+  >
+    <ChevronLeft className="w-6 h-6" />
+  </button>
+  <button
+    ref={nextRef}
+    className="absolute top-1/2 -right-0 z-20 -translate-y-1/2 
+               bg-white text-blue-700 rounded-full p-2 shadow-md 
+               hover:scale-110 transition cursor-pointer"
+  >
+    <ChevronRight className="w-6 h-6" />
+  </button>
+</Swiper>
+
     </div>
         {/* Left Text Column */}
         <motion.div

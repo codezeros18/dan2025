@@ -1,9 +1,18 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import img1 from '../assets/donor2.webp'
 import card1 from '../assets/dgts1.webp'
 import card2 from '../assets/donor1.webp'
 import card3 from '../assets/award2.webp'
 import logo from '../assets/logo6.webp'
+
+import { Swiper, SwiperSlide } from "swiper/react"
+import { EffectCoverflow, Autoplay } from "swiper/modules"
+// @ts-ignore
+import "swiper/css"
+// @ts-ignore
+import "swiper/css/effect-coverflow"
+const images = [img1, card1, card2, card3]
 
 const AboutDAN: React.FC = () => {
   const cards = [
@@ -12,18 +21,21 @@ const AboutDAN: React.FC = () => {
       desc: "Program edukatif yang berfokus pada penyuluhan di sekolah-sekolah. Melalui sesi interaktif, kegiatan ini mengajak pelajar..",
       img: card1,
       gradient: "from-[#0a1a4f] via-[#1a2e7a] to-[#27459b]",
+      link: "/proker"
     },
     {
       title: "ANW 2025",
       desc: "Serangkaian kegiatan inspiratif yang meliputi kunjungan ke panti asuhan, penggalangan donasi, dan donor darah..",
       img: card2,
       gradient: "from-[#0a1a4f] via-[#1a2e7a] to-[#27459b]",
+      link: "/proker"
     },
     {
       title: "AWARDING NIGHT 2024",
       desc: "Rangkaian seleksi dan karantina yang berujung pada malam puncak pemilihan duta penerus. Momen ini menjadi ajang apresiasi bagi..",
       img: card3,
       gradient: "from-[#0a1a4f] via-[#1a2e7a] to-[#27459b]",
+      link: "/proker"
     },
   ]
 
@@ -76,16 +88,40 @@ const AboutDAN: React.FC = () => {
           {/* Grid section 1 */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-20">
             {/* Left image */}
-            <div className="col-span-1 md:col-span-5 flex justify-center">
-              <img
-                src={img1}
-                alt="DUNAR UMN"
-                className="w-full rounded-2xl shadow-lg"
-              />
-            </div>
+            <div className="col-span-1 md:col-span-6 flex justify-center">
+  <Swiper
+    modules={[EffectCoverflow, Autoplay]}
+    effect="coverflow"
+    grabCursor={true}
+    centeredSlides={true}
+    slidesPerView={"auto"}
+    autoplay={{ delay: 3000 }}
+    coverflowEffect={{
+      rotate: 0,
+      stretch: 0,
+      depth: 100,
+      modifier: 2,
+      slideShadows: false,
+    }}
+    className="w-full max-w-lg h-96"
+  >
+    {images.map((src, i) => (
+      <SwiperSlide
+        key={i}
+        className="w-64 h-80 flex justify-center items-center"
+      >
+        <img
+          src={src}
+          alt={`slide-${i}`}
+          className="rounded-2xl shadow-lg transition-transform duration-500 group-hover:scale-105"
+        />
+      </SwiperSlide>
+    ))}
+  </Swiper>
+</div>
 
             {/* Right text */}
-            <div className="col-span-1 md:col-span-7 flex flex-col items-center md:items-start">
+            <div className="col-span-1 md:col-span-6 flex flex-col items-center md:items-start">
               <p className="leading-relaxed mb-8
                             bg-gradient-to-r from-[#0a1a4f]/60 via-[#1a2e7a]/60 to-[#27459b]/60
                             bg-clip-text text-transparent">
@@ -93,8 +129,7 @@ const AboutDAN: React.FC = () => {
                 internal maupun eksternal, sesuai dengan esensi kampus yang menolak segala bentuk penyalahgunaan narkoba. Tagline
                 “Stay Sharp, Stay Strong, Stay Clean!” ingin membawakan pesan bahayanya penyalahgunaan narkoba kepada semua kalangan.
               </p>
-              <a
-                href="#"
+              <Link to="/about"
                 className="inline-block px-8 py-3 rounded-full 
                            bg-gradient-to-r from-[#0a1a4f]/90 via-[#1a2e7a]/90 to-[#27459b]/90
                            text-white font-semibold shadow-md 
@@ -102,7 +137,7 @@ const AboutDAN: React.FC = () => {
                            transition-all duration-300"
               >
                 Know Us Better
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -118,7 +153,7 @@ const AboutDAN: React.FC = () => {
           {/* Grid section 2 */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-stretch pb-12">
             {cards.map((card, i) => (
-              <div
+              <Link to={card.link}
                 key={i}
                 className="group aspect-square relative rounded-2xl shadow-lg overflow-hidden 
                            hover:scale-105 hover:shadow-2xl transition-all duration-300 cursor-pointer"
@@ -143,7 +178,7 @@ const AboutDAN: React.FC = () => {
                   </h3>
                   <p className="text-sm opacity-80">{card.desc}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

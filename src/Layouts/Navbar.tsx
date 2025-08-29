@@ -8,7 +8,7 @@ import menuAnimation from '../assets/menuV2.json';
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(false);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [, setIsDropdownOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const animationRef = useRef<any>(null);
 
@@ -27,6 +27,18 @@ const Navbar: React.FC = () => {
       animationRef.current.play();
     }
   };
+  useEffect(() => {
+  if (!showNavbar && isMobileMenuOpen) {
+    setIsMobileMenuOpen(false);
+
+    // reset animasi hamburger ke awal
+    if (animationRef.current) {
+      animationRef.current.setDirection(-1);
+      animationRef.current.goToAndStop(0, true); // balik ke posisi "closed"
+    }
+  }
+}, [showNavbar, isMobileMenuOpen]);
+
 
   useEffect(() => {
     const handleScroll = () => {

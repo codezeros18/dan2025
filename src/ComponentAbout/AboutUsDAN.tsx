@@ -1,32 +1,8 @@
 import React from 'react'
 import img1 from '../assets/donor2.webp'
-import card1 from '../assets/dgts1.webp'
-import card2 from '../assets/donor1.webp'
-import card3 from '../assets/award2.webp'
 import logo from '../assets/logo6.webp'
 
 const AboutUsDAN: React.FC = () => {
-  const cards = [
-    {
-      title: "DGTS 2025",
-      desc: "Program edukatif yang berfokus pada penyuluhan di sekolah-sekolah. Melalui sesi interaktif, kegiatan ini mengajak pelajar..",
-      img: card1,
-      gradient: "from-[#0a1a4f] via-[#1a2e7a] to-[#27459b]",
-    },
-    {
-      title: "ANW 2025",
-      desc: "Serangkaian kegiatan inspiratif yang meliputi kunjungan ke panti asuhan, penggalangan donasi, dan donor darah..",
-      img: card2,
-      gradient: "from-[#0a1a4f] via-[#1a2e7a] to-[#27459b]",
-    },
-    {
-      title: "AWARDING NIGHT 2024",
-      desc: "Rangkaian seleksi dan karantina yang berujung pada malam puncak pemilihan duta penerus. Momen ini menjadi ajang apresiasi bagi..",
-      img: card3,
-      gradient: "from-[#0a1a4f] via-[#1a2e7a] to-[#27459b]",
-    },
-  ]
-
   return (
     <>
       <section className="relative py-16 px-6 md:px-12 lg:px-20 bg-white">
@@ -76,7 +52,7 @@ const AboutUsDAN: React.FC = () => {
           {/* Grid section 1 */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-20">
             {/* Left image */}
-            <div className="col-span-1 md:col-span-5 flex justify-center">
+            <div className="col-span-1 md:col-span-6 flex justify-center">
               <img
                 src={img1}
                 alt="DUNAR UMN"
@@ -85,7 +61,7 @@ const AboutUsDAN: React.FC = () => {
             </div>
 
             {/* Right text */}
-            <div className="col-span-1 md:col-span-7 flex flex-col items-center md:items-start">
+            <div className="col-span-1 md:col-span-6 flex flex-col items-center md:items-start">
               <p className="leading-relaxed mb-8
                             bg-gradient-to-r from-[#0a1a4f]/60 via-[#1a2e7a]/60 to-[#27459b]/60
                             bg-clip-text text-transparent">
@@ -93,16 +69,6 @@ const AboutUsDAN: React.FC = () => {
                 internal maupun eksternal, sesuai dengan esensi kampus yang menolak segala bentuk penyalahgunaan narkoba. Tagline
                 “Stay Sharp, Stay Strong, Stay Clean!” ingin membawakan pesan bahayanya penyalahgunaan narkoba kepada semua kalangan.
               </p>
-              <a
-                href="#"
-                className="inline-block px-8 py-3 rounded-full 
-                           bg-gradient-to-r from-[#0a1a4f]/90 via-[#1a2e7a]/90 to-[#27459b]/90
-                           text-white font-semibold shadow-md 
-                           hover:shadow-xl hover:scale-105 hover:opacity-100
-                           transition-all duration-300"
-              >
-                Know Us Better
-              </a>
             </div>
           </div>
         </div>

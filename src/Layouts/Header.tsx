@@ -8,11 +8,6 @@ import img3 from "../assets/award4.webp";
 import img4 from "../assets/award5.webp";
 import img5 from "../assets/award6.webp";
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0 },
-};
-
 const images = [img1, img2, img3, img4, img5];
 
 type HeaderLayoutProps = {
