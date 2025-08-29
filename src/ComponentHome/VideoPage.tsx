@@ -1,6 +1,6 @@
 import bg from '../assets/back2.webp'
 import React, { useRef } from "react";
-import vid from '../assets/bgvid.mp4'
+import vid from '../assets/vid1.mp4'
 
 const VideoPage : React.FC = () => {
     const videoRef = useRef<HTMLVideoElement | null>(null);
