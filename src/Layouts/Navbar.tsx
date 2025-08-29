@@ -13,6 +13,7 @@ const Navbar: React.FC = () => {
   const animationRef = useRef<any>(null);
 
   const navItems = [
+    { nav: 'Home', link: '/' },
     { nav: 'Events', link: '/proker' },
     { nav: 'About Us', link: '/about' },
   ];

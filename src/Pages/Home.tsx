@@ -1,7 +1,7 @@
 import Navbar from '../Layouts/Navbar'
-import Header from '../Components/Header'
-import AboutDAN from '../Components/AboutDAN'
-import VideoPage from '../Components/VideoPage'
+import Header from '../ComponentHome/Header'
+import AboutDAN from '../ComponentHome/AboutDAN'
+import VideoPage from '../ComponentHome/VideoPage'
 import Footer from '../Layouts/Footer'
 
 const Home: React.FC = () => {
