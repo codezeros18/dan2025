@@ -57,9 +57,9 @@ const Header: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-[#0a1a4f]/100 via-[#2b227a]/70 to-[#3d2ca6]/90"></div>
 
       {/* Content */}
-      <div className="relative max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center z-10">
+      <div className="relative max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center z-10">
         {/* Right Video Column */}
-        <div className="relative max-w-full md:max-w-[350px] lg:max-w-[450px] mx-auto order-2 md:order-1">
+        <div className="relative max-w-full lg:max-w-[350px] xl:max-w-[450px] mx-auto order-2 lg:order-1">
       <Swiper
   modules={[Navigation, Pagination, Autoplay]}
   pagination={{ clickable: true }}
@@ -80,14 +80,14 @@ const Header: React.FC = () => {
   {slides.map((item, index) => (
     <SwiperSlide key={index}>
       <div
-        className="flex flex-col items-center justify-center text-white p-8 md:p-10 rounded-2xl min-h-[250px] 
+        className="flex flex-col items-center justify-center text-white p-8 md:p-10 rounded-2xl min-h-[350px] md:min-h-[250px] 
                    bg-gradient-to-r from-cyan-500/50 via-blue-500/50 to-indigo-500/50 
                    backdrop-blur-md shadow-lg"
       >
         <h2 className="text-xl md:text-2xl font-extrabold mb-3 text-center leading-snug drop-shadow-md">
           {item.title}
         </h2>
-        <p className="mb-6 text-center text-base md:text-lg opacity-90">
+        <p className="mb-6 text-center text-base md:text-lg mx-2 sm:mx-0 opacity-90">
           {item.desc}
         </p>
         <Link
@@ -124,7 +124,7 @@ const Header: React.FC = () => {
     </div>
         {/* Left Text Column */}
         <motion.div
-          className="text-white drop-shadow-lg flex flex-col items-center justify-center text-center order-1 md:order-2"
+          className="text-white drop-shadow-lg flex flex-col items-center justify-center text-center order-1 lg:order-2"
           variants={fadeInUp}
           initial="hidden"
           whileInView="visible"
