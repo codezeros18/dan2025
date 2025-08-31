@@ -103,12 +103,12 @@ const AboutDAN: React.FC = () => {
       modifier: 2,
       slideShadows: false,
     }}
-    className="w-full max-w-lg h-96"
+    className="w-full max-w-lg h-auto md:h-96"
   >
     {images.map((src, i) => (
       <SwiperSlide
         key={i}
-        className="w-64 h-auto md:h-80 flex justify-center items-center"
+        className="w-64 h-80 flex justify-center items-center"
       >
         <img
           src={src}
