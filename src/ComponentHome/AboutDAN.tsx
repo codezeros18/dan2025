@@ -108,7 +108,7 @@ const AboutDAN: React.FC = () => {
     {images.map((src, i) => (
       <SwiperSlide
         key={i}
-        className="w-64 h-80 flex justify-center items-center"
+        className="w-64 h-auto md:h-80 flex justify-center items-center"
       >
         <img
           src={src}

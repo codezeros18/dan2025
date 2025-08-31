@@ -1,8 +1,44 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import img1 from '../assets/donor2.webp'
+import card1 from '../assets/dgts1.webp'
+import card2 from '../assets/donor1.webp'
+import card3 from '../assets/award2.webp'
 import logo from '../assets/logo6.webp'
 
+import { Swiper, SwiperSlide } from "swiper/react"
+import { EffectCoverflow, Autoplay } from "swiper/modules"
+// @ts-ignore
+import "swiper/css"
+// @ts-ignore
+import "swiper/css/effect-coverflow"
+const images = [img1, card1, card2, card3]
+
 const AboutUsDAN: React.FC = () => {
+  const cards = [
+    {
+      title: "DGTS 2025",
+      desc: "Program edukatif yang berfokus pada penyuluhan di sekolah-sekolah. Melalui sesi interaktif, kegiatan ini mengajak pelajar..",
+      img: card1,
+      gradient: "from-[#0a1a4f] via-[#1a2e7a] to-[#27459b]",
+      link: "/proker"
+    },
+    {
+      title: "ANW 2025",
+      desc: "Serangkaian kegiatan inspiratif yang meliputi kunjungan ke panti asuhan, penggalangan donasi, dan donor darah..",
+      img: card2,
+      gradient: "from-[#0a1a4f] via-[#1a2e7a] to-[#27459b]",
+      link: "/proker"
+    },
+    {
+      title: "AWARDING NIGHT 2024",
+      desc: "Rangkaian seleksi dan karantina yang berujung pada malam puncak pemilihan duta penerus. Momen ini menjadi ajang apresiasi bagi..",
+      img: card3,
+      gradient: "from-[#0a1a4f] via-[#1a2e7a] to-[#27459b]",
+      link: "/proker"
+    },
+  ]
+
   return (
     <>
       <section className="relative py-16 px-6 md:px-12 lg:px-20 bg-white">
@@ -53,12 +89,36 @@ const AboutUsDAN: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-20">
             {/* Left image */}
             <div className="col-span-1 md:col-span-6 flex justify-center">
-              <img
-                src={img1}
-                alt="DUNAR UMN"
-                className="w-full rounded-2xl shadow-lg"
-              />
-            </div>
+  <Swiper
+    modules={[EffectCoverflow, Autoplay]}
+    effect="coverflow"
+    grabCursor={true}
+    centeredSlides={true}
+    slidesPerView={"auto"}
+    autoplay={{ delay: 3000 }}
+    coverflowEffect={{
+      rotate: 0,
+      stretch: 0,
+      depth: 100,
+      modifier: 2,
+      slideShadows: false,
+    }}
+    className="w-full max-w-lg h-96"
+  >
+    {images.map((src, i) => (
+      <SwiperSlide
+        key={i}
+        className="w-64 h-auto md:h-80 flex justify-center items-center"
+      >
+        <img
+          src={src}
+          alt={`slide-${i}`}
+          className="rounded-2xl shadow-lg transition-transform duration-500 group-hover:scale-105"
+        />
+      </SwiperSlide>
+    ))}
+  </Swiper>
+</div>
 
             {/* Right text */}
             <div className="col-span-1 md:col-span-6 flex flex-col items-center md:items-start">
@@ -69,6 +129,15 @@ const AboutUsDAN: React.FC = () => {
                 internal maupun eksternal, sesuai dengan esensi kampus yang menolak segala bentuk penyalahgunaan narkoba. Tagline
                 “Stay Sharp, Stay Strong, Stay Clean!” ingin membawakan pesan bahayanya penyalahgunaan narkoba kepada semua kalangan.
               </p>
+              <Link to="/about"
+                className="inline-block px-8 py-3 rounded-full 
+                           bg-gradient-to-r from-[#0a1a4f]/90 via-[#1a2e7a]/90 to-[#27459b]/90
+                           text-white font-semibold shadow-md 
+                           hover:shadow-xl hover:scale-105 hover:opacity-100
+                           transition-all duration-300"
+              >
+                Know Us Better
+              </Link>
             </div>
           </div>
         </div>
