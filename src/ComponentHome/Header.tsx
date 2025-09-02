@@ -22,20 +22,20 @@ const Header: React.FC = () => {
   const nextRef = React.useRef<HTMLButtonElement>(null);
   const slides = [
     {
-  title: "ANW 2025",
+  title: "DGTS 2025 ", 
   desc: "Spreading awareness about drugs and anti-drugs to high school students.",
   button: "Explore Now",
   link: "/proker"
 },
 {
-  title: "DGTS 2025",
-  desc: "Contribute and make a difference through our donation program.",
+  title: "ANW 2025",
+  desc: "Contribute through donation, blood drives, and orphanage visits to make a real impact.",
   button: "Donate Today",
   link: "/proker"
 },
 {
   title: "AWARDING NIGHT 2025",
-  desc: "Share kindness and support by joining our orphanage visits.",
+  desc: "Celebrate the finalists and close the event with an unforgettable awarding party night.",
   button: "Join Us",
   link: "/proker"
 }
