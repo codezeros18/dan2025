@@ -1,5 +1,4 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+
 import img1 from '../assets/donor2.webp'
 import card1 from '../assets/dgts1.webp'
 import card2 from '../assets/donor1.webp'
@@ -14,30 +13,16 @@ import "swiper/css"
 import "swiper/css/effect-coverflow"
 const images = [img1, card1, card2, card3]
 
+import React, { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+
 const AboutUsDAN: React.FC = () => {
-  const cards = [
-    {
-      title: "DGTS 2025",
-      desc: "Program edukatif yang berfokus pada penyuluhan di sekolah-sekolah. Melalui sesi interaktif, kegiatan ini mengajak pelajar..",
-      img: card1,
-      gradient: "from-[#0a1a4f] via-[#1a2e7a] to-[#27459b]",
-      link: "/proker"
-    },
-    {
-      title: "ANW 2025",
-      desc: "Serangkaian kegiatan inspiratif yang meliputi kunjungan ke panti asuhan, penggalangan donasi, dan donor darah..",
-      img: card2,
-      gradient: "from-[#0a1a4f] via-[#1a2e7a] to-[#27459b]",
-      link: "/proker"
-    },
-    {
-      title: "AWARDING NIGHT 2024",
-      desc: "Rangkaian seleksi dan karantina yang berujung pada malam puncak pemilihan duta penerus. Momen ini menjadi ajang apresiasi bagi..",
-      img: card3,
-      gradient: "from-[#0a1a4f] via-[#1a2e7a] to-[#27459b]",
-      link: "/proker"
-    },
-  ]
+  const [active, setActive] = useState<string>("Visi") // ✅ default langsung Visi
+  const content: Record<string, string> = {
+    Visi: "Menjadikan generasi yang dapat membentuk lingkungan internal maupun eksternal Universitas Multimedia Nusantara yang bebas dari penyalahgunaan narkoba, kompeten, dan mampu bersaing dengan cara yang kreatif dan inovatif.",
+    Misi: "1. Mengadakan sosialisasi langsung pada pelajar dan masyarakat tentang bahaya narkoba.\n2. Menjadi duta yang kompeten sehingga dapat memberikan contoh yang baik di kalangan mahasiswa dan masyarakat.\n3. Memaksimalkan penggunaan media sosial sebagai sarana yang memberikan dampak bagi masyarakat.\n4.Menyelenggarakan kegiatan yang dapat membangun hubungan antar organisasi internal dan eksternal kampus.",
+    Tagline: "Stay Sharp, Stay Strong, Stay Clean!"
+  }
 
   return (
     <>
@@ -129,18 +114,52 @@ const AboutUsDAN: React.FC = () => {
                 internal maupun eksternal, sesuai dengan esensi kampus yang menolak segala bentuk penyalahgunaan narkoba. Tagline
                 “Stay Sharp, Stay Strong, Stay Clean!” ingin membawakan pesan bahayanya penyalahgunaan narkoba kepada semua kalangan.
               </p>
-              <Link to="/about"
-                className="inline-block px-8 py-3 rounded-full 
-                           bg-gradient-to-r from-[#0a1a4f]/90 via-[#1a2e7a]/90 to-[#27459b]/90
-                           text-white font-semibold shadow-md 
-                           hover:shadow-xl hover:scale-105 hover:opacity-100
-                           transition-all duration-300"
-              >
-                Know Us Better
-              </Link>
             </div>
           </div>
         </div>
+        <div className="max-w-6xl mx-auto w-full my-16 md:my-24">
+      {/* Grid button */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center">
+        {Object.keys(content).map((key) => (
+          <motion.button
+            key={key}
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setActive(active === key ? key : key)} // tidak toggle, biar selalu ada isi
+            className={`py-6 px-8 rounded-2xl shadow-lg font-bold text-lg md:text-xl transition-all cursor-pointer
+              ${active === key 
+                ? "bg-gradient-to-r from-[#0a1a4f] via-[#1a2e7a] to-[#27459b] text-white scale-105" 
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+          >
+            {key}
+          </motion.button>
+        ))}
+      </div>
+
+      {/* Content box with animation */}
+      <div className="mt-12 text-center">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 40, scale: 0.95 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="flex justify-center"
+          >
+            <motion.div
+              layout
+              className="p-8 md:p-12 rounded-3xl shadow-2xl bg-white border border-gray-200
+                          max-w-3xl w-full min-h-[220px] flex items-center justify-center whitespace-pre-line"
+            >
+              <p className="text-gray-800 leading-relaxed text-lg md:text-xl font-medium">
+                {content[active]}
+              </p>
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
       </section>
     </>
   )
