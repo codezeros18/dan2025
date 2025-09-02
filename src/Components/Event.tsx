@@ -173,7 +173,7 @@ const Event: React.FC = () => {
           <img
             src={img}
             alt={`Gallery ${i}`}
-            className="w-full h-48 md:h-56 lg:h-64 object-cover"
+            className="w-full h-36 md:h-56 lg:h-64 object-cover"
           />
         </motion.div>
       ))}
