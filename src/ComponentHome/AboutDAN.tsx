@@ -1,7 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import img1 from '../assets/donor2.webp'
-import card1 from '../assets/dgts1.webp'
+import img1 from '../assets/donor5.webp'
+import img2 from '../assets/dgtss5.webp'
+import img3 from '../assets/donor7.webp'
+import img4 from '../assets/award6.webp'
+import img5 from '../assets/dgtss3.webp'
+
+import card1 from '../assets/dgtss1.webp'
 import card2 from '../assets/donor1.webp'
 import card3 from '../assets/award2.webp'
 import logo from '../assets/logo6.webp'
@@ -12,7 +17,7 @@ import { EffectCoverflow, Autoplay } from "swiper/modules"
 import "swiper/css"
 // @ts-ignore
 import "swiper/css/effect-coverflow"
-const images = [img1, card1, card2, card3]
+const images = [img1, img2, img3, img4, img5]
 
 const AboutDAN: React.FC = () => {
   const cards = [
@@ -108,7 +113,7 @@ const AboutDAN: React.FC = () => {
     {images.map((src, i) => (
       <SwiperSlide
         key={i}
-        className="w-64 h-80 flex justify-center items-center"
+        className="w-64 h-full flex justify-center items-center"
       >
         <img
           src={src}

@@ -10,29 +10,44 @@ import "swiper/css"
 import bg from "../assets/back2.webp"
 import logo from '../assets/logo6.webp'
 
-import img1 from "../assets/donor2.webp"
-import img2 from "../assets/donor1.webp"
+import dgts1 from "../assets/dgtss1.webp"
+import dgts2 from "../assets/dgtss2.webp"
+import dgts3 from "../assets/dgtss3.webp"
+import dgts4 from "../assets/dgtss4.webp"
+import dgts5 from "../assets/dgtss5.webp"
 
-const galleryImages = [img1, img2, img1, img2, img1, img2, img1, img2]
+import award2 from "../assets/award2.webp"
+import award3 from "../assets/award3.webp"
+import award4 from "../assets/award4.webp"
+import award5 from "../assets/award5.webp"
+import award6 from "../assets/award6.webp"
+
+import donor1 from "../assets/donor1.webp"
+import donor2 from "../assets/donor2.webp"
+import donor3 from "../assets/donor3.webp"
+import donor4 from "../assets/donor4.webp"
+import donor5 from "../assets/donor5.webp"
+
+const galleryImages = [dgts1, award2, donor1, dgts5, award6, award3, donor2, dgts1]
 
 const bigEvents = [
   {
     id: "dgts",
     title: "Duta Anti Narkoba Go To School",
     desc: "Program edukatif yang berfokus pada penyuluhan di sekolah-sekolah. Melalui sesi interaktif, kegiatan ini mengajak pelajar untuk lebih memahami bahaya narkoba serta pentingnya menjaga kesehatan fisik dan mental dalam kehidupan sehari-hari.",
-    images: [img1, img2],
+    images: [dgts1, dgts2, dgts3, dgts4, dgts5],
   },
   {
     id: "anw",
     title: "Anti Narkoba Week",
     desc: "Serangkaian kegiatan inspiratif yang meliputi kunjungan ke panti asuhan, penggalangan donasi, dan donor darah. Semua ini dilakukan untuk menumbuhkan kepedulian sosial serta meningkatkan kesadaran akan pentingnya menjaga kesehatan, khususnya di kalangan generasi muda.",
-    images: [img1, img2],
+    images: [donor1, donor2, donor3, donor4, donor5],
   },
   {
     id: "awarding",
   title: "Awarding Night",
     desc: "Rangkaian seleksi dan karantina yang berujung pada malam puncak pemilihan duta penerus. Momen ini menjadi ajang apresiasi bagi mereka yang siap membawa semangat perubahan dalam gerakan anti narkoba di lingkungan sekitar.",
-    images: [img1, img2],
+    images: [award2, award3, award4, award5, award6],
   },
 ]
 

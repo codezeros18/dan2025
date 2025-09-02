@@ -1,8 +1,10 @@
 
-import img1 from '../assets/donor2.webp'
-import card1 from '../assets/dgts1.webp'
-import card2 from '../assets/donor1.webp'
-import card3 from '../assets/award2.webp'
+import img1 from '../assets/donor5.webp'
+import img2 from '../assets/dgtss5.webp'
+import img3 from '../assets/donor7.webp'
+import img4 from '../assets/award6.webp'
+import img5 from '../assets/dgtss3.webp'
+
 import logo from '../assets/logo6.webp'
 
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -11,7 +13,7 @@ import { EffectCoverflow, Autoplay } from "swiper/modules"
 import "swiper/css"
 // @ts-ignore
 import "swiper/css/effect-coverflow"
-const images = [img1, card1, card2, card3]
+const images = [img1, img2, img3, img4, img5]
 
 import React, { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
