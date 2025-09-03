@@ -208,7 +208,7 @@ const Division: React.FC = () => {
               setOpen((p) => !p);
             }
           }}
-          animate={{ rotate: open ? 180 : 0 }}
+          animate={{ rotate: open ? 360 : 0 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
           className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 p-2 sm:p-3 rounded-full 
           bg-gradient-to-br from-[#0a1a4f]/100 to-[#3d2ca6]/90 flex items-center justify-center shadow-lg 
