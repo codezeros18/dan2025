@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaPlus, FaMinus } from "react-icons/fa";
 import img from "../assets/logo6.webp";
-import img1 from "../assets/award2.webp";
+import img1 from "../assets/dgtss1.webp";
 import img2 from "../assets/award3.webp";
-import img3 from "../assets/award4.webp";
-import img4 from "../assets/award5.webp";
-import img5 from "../assets/award6.webp";
+import img3 from "../assets/donor1.webp";
+import img4 from "../assets/dgts4.webp";
+import img5 from "../assets/award5.webp";
 
 const images = [img1, img2, img3, img4, img5];
 
@@ -23,7 +23,7 @@ const faqData = [
   {
     title: "Bagaimana cara ikut program?",
     content:
-      "Kamu bisa ikut dengan mendaftar di event-event resmi yang kami adakan atau melalui formulir online di website ini.",
+      "Kamu bisa ikut dengan mendaftar di event-event resmi yang kami adakan atau memantau instagram kami.",
   },
   {
     title: "Apakah program ini gratis?",

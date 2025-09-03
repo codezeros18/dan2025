@@ -1,4 +1,4 @@
-import bg from '../assets/back2.webp'
+import bg from '../assets/backgroundaward.jpg'
 import React, { useRef } from "react";
 import vid from '../assets/vid1.mp4'
 
@@ -21,14 +21,14 @@ const VideoPage : React.FC = () => {
   <img
     src={bg} // ganti path sesuai file kamu
     alt="Background"
-    className="absolute inset-0 w-full h-full object-cover"
+    className="absolute inset-0 w-full h-full object-cover object-top"
   />
 
   {/* Overlay gradient supaya teks lebih terbaca */}
 <div className="absolute inset-0 bg-gradient-to-b 
-  from-[#0a0a2e]/95 
-  via-[#1b174d]/85 
-  to-[#2d2470]/80">
+  from-[#0a0a2e]/55 
+  via-[#1b174d]/45 
+  to-[#2d2470]/40">
 </div>
 
 

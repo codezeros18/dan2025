@@ -1,8 +1,31 @@
-import React from 'react'
-import img1 from '../assets/donor2.webp'
+
+import img1 from '../assets/donor5.webp'
+import img2 from '../assets/dgtss5.webp'
+import img3 from '../assets/donor7.webp'
+import img4 from '../assets/award6.webp'
+import img5 from '../assets/dgtss3.webp'
+
 import logo from '../assets/logo6.webp'
 
+import { Swiper, SwiperSlide } from "swiper/react"
+import { EffectCoverflow, Autoplay } from "swiper/modules"
+// @ts-ignore
+import "swiper/css"
+// @ts-ignore
+import "swiper/css/effect-coverflow"
+const images = [img1, img2, img3, img4, img5]
+
+import React, { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+
 const AboutUsDAN: React.FC = () => {
+  const [active, setActive] = useState<string>("Visi") // ✅ default langsung Visi
+  const content: Record<string, string> = {
+    Visi: "Menjadikan generasi yang dapat membentuk lingkungan internal maupun eksternal Universitas Multimedia Nusantara yang bebas dari penyalahgunaan narkoba, kompeten, dan mampu bersaing dengan cara yang kreatif dan inovatif.",
+    Misi: "1. Mengadakan sosialisasi langsung pada pelajar dan masyarakat tentang bahaya narkoba.\n2. Menjadi duta yang kompeten sehingga dapat memberikan contoh yang baik di kalangan mahasiswa dan masyarakat.\n3. Memaksimalkan penggunaan media sosial sebagai sarana yang memberikan dampak bagi masyarakat.\n4.Menyelenggarakan kegiatan yang dapat membangun hubungan antar organisasi internal dan eksternal kampus.",
+    Tagline: "Stay Sharp, Stay Strong, Stay Clean!"
+  }
+
   return (
     <>
       <section className="relative py-16 px-6 md:px-12 lg:px-20 bg-white">
@@ -53,12 +76,36 @@ const AboutUsDAN: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-20">
             {/* Left image */}
             <div className="col-span-1 md:col-span-6 flex justify-center">
-              <img
-                src={img1}
-                alt="DUNAR UMN"
-                className="w-full rounded-2xl shadow-lg"
-              />
-            </div>
+  <Swiper
+    modules={[EffectCoverflow, Autoplay]}
+    effect="coverflow"
+    grabCursor={true}
+    centeredSlides={true}
+    slidesPerView={"auto"}
+    autoplay={{ delay: 3000 }}
+    coverflowEffect={{
+      rotate: 0,
+      stretch: 0,
+      depth: 100,
+      modifier: 2,
+      slideShadows: false,
+    }}
+    className="w-full max-w-lg h-auto md:h-96"
+  >
+    {images.map((src, i) => (
+      <SwiperSlide
+        key={i}
+        className="w-64 h-80 flex justify-center items-center"
+      >
+        <img
+          src={src}
+          alt={`slide-${i}`}
+          className="rounded-2xl shadow-lg transition-transform duration-500 group-hover:scale-105"
+        />
+      </SwiperSlide>
+    ))}
+  </Swiper>
+</div>
 
             {/* Right text */}
             <div className="col-span-1 md:col-span-6 flex flex-col items-center md:items-start">
@@ -72,6 +119,49 @@ const AboutUsDAN: React.FC = () => {
             </div>
           </div>
         </div>
+        <div className="max-w-6xl mx-auto w-full my-16 md:my-24">
+      {/* Grid button */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center">
+        {Object.keys(content).map((key) => (
+          <motion.button
+            key={key}
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setActive(active === key ? key : key)} // tidak toggle, biar selalu ada isi
+            className={`py-6 px-8 rounded-2xl shadow-lg font-bold text-lg md:text-xl transition-all cursor-pointer
+              ${active === key 
+                ? "bg-gradient-to-r from-[#0a1a4f] via-[#1a2e7a] to-[#27459b] text-white scale-105" 
+                : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
+          >
+            {key}
+          </motion.button>
+        ))}
+      </div>
+
+      {/* Content box with animation */}
+      <div className="mt-12 text-center">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={active}
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 40, scale: 0.95 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="flex justify-center"
+          >
+            <motion.div
+              layout
+              className="p-8 md:p-12 rounded-3xl shadow-2xl bg-white border border-gray-200
+                          max-w-3xl w-full min-h-[220px] flex items-center justify-center whitespace-pre-line"
+            >
+              <p className="text-gray-800 leading-relaxed text-lg md:text-xl font-medium">
+                {content[active]}
+              </p>
+            </motion.div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </div>
       </section>
     </>
   )

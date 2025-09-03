@@ -142,7 +142,7 @@ const Division: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen w-screen bg-gradient-to-br from-[#3d2ca6]/90 via-[#2b227a]/70 to-[#0a1a4f]/100 overflow-hidden relative">
+    <div className="flex items-center justify-center h-screen w-auto bg-gradient-to-br from-[#3d2ca6]/90 via-[#2b227a]/70 to-[#0a1a4f]/100 overflow-hidden relative">
       {/* Blur + background overlay when modal open */}
       <AnimatePresence>
         {selectedDivision !== null && (
