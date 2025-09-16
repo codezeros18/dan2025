@@ -54,41 +54,34 @@ const HeaderLayout: React.FC<HeaderLayoutProps> = ({ variant }) => {
   });
 
   useEffect(() => {
-    if (variant !== "countdown") return;
+  if (variant !== "countdown") return;
 
-    let savedTarget = localStorage.getItem("countdownTarget");
-    let targetDate: Date;
+  // target date langsung fixed
+  const targetDate = new Date(2025, 10, 27, 0, 0, 0);
+// bulan 10 = November (karena 0 = Januari)
 
-    if (savedTarget) {
-      targetDate = new Date(savedTarget);
+  const timer = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate.getTime() - now;
+
+    if (distance <= 0) {
+      clearInterval(timer);
+      setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
     } else {
-      targetDate = new Date();
-      targetDate.setDate(targetDate.getDate() + 7);
-      localStorage.setItem("countdownTarget", targetDate.toISOString());
+      setTimeLeft({
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        ),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000),
+      });
     }
+  }, 1000);
 
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate.getTime() - now;
+  return () => clearInterval(timer);
+}, [variant]);
 
-      if (distance <= 0) {
-        clearInterval(timer);
-        localStorage.removeItem("countdownTarget");
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      } else {
-        setTimeLeft({
-          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-          hours: Math.floor(
-            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-          ),
-          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((distance % (1000 * 60)) / 1000),
-        });
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [variant]);
 
   const toggleAccordion = (i: number) =>
     setActiveIndex(activeIndex === i ? null : i);
