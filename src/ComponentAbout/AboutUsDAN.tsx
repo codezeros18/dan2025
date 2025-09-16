@@ -20,9 +20,14 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 const AboutUsDAN: React.FC = () => {
   const [active, setActive] = useState<string>("Visi") // ✅ default langsung Visi
-  const content: Record<string, string> = {
+  const content: Record<string, string | string[]> = {
     Visi: "Menjadikan generasi yang dapat membentuk lingkungan internal maupun eksternal Universitas Multimedia Nusantara yang bebas dari penyalahgunaan narkoba, kompeten, dan mampu bersaing dengan cara yang kreatif dan inovatif.",
-    Misi: "1. Mengadakan sosialisasi langsung pada pelajar dan masyarakat tentang bahaya narkoba.\n2. Menjadi duta yang kompeten sehingga dapat memberikan contoh yang baik di kalangan mahasiswa dan masyarakat.\n3. Memaksimalkan penggunaan media sosial sebagai sarana yang memberikan dampak bagi masyarakat.\n4.Menyelenggarakan kegiatan yang dapat membangun hubungan antar organisasi internal dan eksternal kampus.",
+    Misi: [
+    "Mengadakan sosialisasi langsung pada pelajar dan masyarakat tentang bahaya narkoba.",
+    "Menjadi duta yang kompeten sehingga dapat memberikan contoh yang baik di kalangan mahasiswa dan masyarakat.",
+    "Memaksimalkan penggunaan media sosial sebagai sarana yang memberikan dampak bagi masyarakat.",
+    "Menyelenggarakan kegiatan yang dapat membangun hubungan antar organisasi internal dan eksternal kampus."
+  ],
     Tagline: "Stay Sharp, Stay Strong, Stay Clean!"
   }
 
@@ -154,9 +159,17 @@ const AboutUsDAN: React.FC = () => {
               className="p-8 md:p-12 rounded-3xl shadow-2xl bg-white border border-gray-200
                           max-w-3xl w-full min-h-[220px] flex items-center justify-center whitespace-pre-line"
             >
-              <p className="text-gray-800 leading-relaxed text-lg md:text-xl font-medium">
-                {content[active]}
-              </p>
+              {Array.isArray(content[active]) ? (
+  <ul className="list-decimal list-inside space-y-3 text-gray-800 text-lg md:text-xl font-medium">
+    {(content[active] as string[]).map((item, i) => (
+      <li key={i}>{item}</li>
+    ))}
+  </ul>
+              ) : (
+                <p className="text-gray-800 leading-relaxed text-lg md:text-xl font-medium whitespace-pre-line">
+                  {content[active] as string}
+                </p>
+              )}
             </motion.div>
           </motion.div>
         </AnimatePresence>
