@@ -99,15 +99,16 @@ const AboutUsDAN: React.FC = () => {
   >
     {images.map((src, i) => (
       <SwiperSlide
-        key={i}
-        className="w-64 h-80 flex justify-center items-center"
-      >
-        <img
-          src={src}
-          alt={`slide-${i}`}
-          className="rounded-2xl shadow-lg transition-transform duration-500 group-hover:scale-105"
-        />
-      </SwiperSlide>
+  key={i}
+  className="w-64 h-80 flex justify-center items-center overflow-hidden"
+>
+  <img
+    src={src}
+    alt={`slide-${i}`}
+    className="w-full h-full object-cover rounded-2xl shadow-lg"
+  />
+</SwiperSlide>
+
     ))}
   </Swiper>
 </div>
