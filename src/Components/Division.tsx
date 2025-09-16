@@ -13,13 +13,13 @@ import Visual from "../assets/Visual2.webp";
 import Website from "../assets/Website2.webp";
 import Logo from "../assets/logo6.webp";
 
-import KennyModal from "../assets/Kenny.jpg";
+import GegeModal from "../assets/Mikael.jpg";
 import LintangModal from "../assets/Lintang.jpg";
 import VasselModal from "../assets/Vassel.jpg";
 import SternModal from "../assets/Stern.jpg";
 import ThereModal from "../assets/There.jpg";
 import RiekheModal from "../assets/Riekhe.jpg";
-import JustineModal from "../assets/Justine.jpg";
+import JosiahModal from "../assets/josiah.jpg";
 import CheliModal from "../assets/Cheli.jpg";
 import ChrisModal from "../assets/Chris.jpg";
 import DerrenModal from "../assets/Derren.jpg";
@@ -31,7 +31,7 @@ import OwenModal from "../assets/Owen.jpg";
 import ChloeModal from "../assets/Chloe.jpg";
 import FeliciaModal from "../assets/Felicia.jpg";
 import JessicaModal from "../assets/Jessica.jpg";
-import JoshModal from "../assets/Josh.jpg";
+import GlenardModal from "../assets/Glenard.jpg";
 import AndrewModal from "../assets/Andrew.jpg";
 import RafaModal from "../assets/Rafa.jpg";
 
@@ -51,55 +51,55 @@ const Division: React.FC = () => {
       {
         icon: Bph,
         label: "BPH",
-        desc: "Divisi Badan Pengurus Harian (Adhyaksana)...",
+        desc: "Divisi Badan Pengurus Harian (Adhyaksana) Merupakan pusat koordinasi seluruh kegiatan organisasi. Adhyaksana memastikan setiap divisi berjalan selaras, melakukan pengambilan keputusan strategis, dan menjaga arah visi serta misi organisasi.",
         cards: [VasselModal, FeliciaModal, JessicaModal, OwenModal, ChloeModal, NicoleModal],
       },
       {
         icon: Website,
         label: "Website",
-        desc: "Divisi Website (Vistara)...",
-        cards: [KennyModal, LintangModal],
+        desc: "Divisi Website (Vistara) Bertanggung jawab atas perancangan, pengembangan, dan pemeliharaan website resmi Duta Anti Narkoba UMN 2025. Vistara memastikan semua informasi terpublikasi dengan baik, interaktif, dan mudah diakses oleh publik.",
+        cards: [LintangModal, GegeModal],
       },
       {
         icon: Acara,
         label: "Acara",
-        desc: "Divisi Acara (Mahosatva)...",
+        desc: "Divisi Acara (Mahosatva) Bertugas untuk merancang, merencanakan, dan melaksanakan seluruh rangkaian kegiatan dan kampanye anti narkoba. Mahosatva menciptakan acara yang edukatif, inspiratif, dan berdampak luas.",
         cards: [SternModal, RafaModal],
       },
       {
         icon: Dokum,
         label: "Dokumentasi",
-        desc: "Divisi Dokumentasi (Samskruti)...",
+        desc: "Divisi Dokumentasi (Samskruti) Mengabadikan setiap momen kegiatan melalui foto dan video. Samskruti juga bertugas menyusun arsip dokumentasi dan mempublikasikan konten yang menggambarkan semangat gerakan Duta Anti Narkoba 2025.",
         cards: [StevModal, MarlonModal],
       },
       {
         icon: Visual,
         label: "Visual",
-        desc: "Divisi Visual (Rupaka)...",
+        desc: "Divisi Visual (Rupaka) Bertanggung jawab atas seluruh aspek visual, termasuk desain grafis, branding, dan estetika publikasi. Rupaka memastikan identitas visual organisasi kuat dan menarik.",
         cards: [ThereModal, ChrisModal],
       },
       {
         icon: Keamanan,
         label: "Keamanan",
-        desc: "Divisi Keamanan (Rakshana)...",
+        desc: "Divisi Keamanan (Rakshana) Menjaga keamanan dan ketertiban dalam seluruh kegiatan organisasi, baik online maupun offline. Rakshana memastikan setiap program berjalan aman dan nyaman untuk semua pihak.",
         cards: [DerrenModal, AndrewModal],
       },
       {
         icon: Perlengkapan,
         label: "Perlengkapan",
-        desc: "Divisi Perlengkapan (Upakarana)...",
-        cards: [JustineModal, JoshModal],
+        desc: "Divisi Perlengkapan (Upakarana) Bertugas mengatur dan menyediakan seluruh kebutuhan logistik serta perlengkapan kegiatan. Upakarana memastikan semua persiapan teknis berjalan lancar.",
+        cards: [JosiahModal, GlenardModal],
       },
       {
         icon: PR,
         label: "Humas",
-        desc: "Divisi Hubungan Masyarakat (Sambandha)...",
+        desc: "Divisi Hubungan Masyarakat (Sambandha) Menjalin relasi dan membangun komunikasi strategis dengan pihak eksternal, termasuk media, komunitas, dan institusi lain. Sambandha menjadi wajah organisasi dalam membina citra positif di masyarakat.",
         cards: [RiekheModal, CheliModal],
       },
       {
         icon: Sponsor,
         label: "Sponsor",
-        desc: "Divisi Dana dan Sponsor (Dhanika)...",
+        desc: "Divisi Dana dan Sponsor (Dhanika) Bertanggung jawab mencari, mengelola, dan mempertanggungjawabkan dana serta sponsorship. Dhanika memastikan keberlangsungan kegiatan melalui pendanaan yang transparan dan profesional.",
         cards: [ShakiraModal],
       },
     ],
@@ -209,7 +209,7 @@ const Division: React.FC = () => {
             }
           }}
           animate={{ rotate: open ? 360 : 0 }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
           className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 p-2 sm:p-3 rounded-full 
           bg-gradient-to-br from-[#0a1a4f]/100 to-[#3d2ca6]/90 flex items-center justify-center shadow-lg 
           hover:scale-105 transition z-20"
