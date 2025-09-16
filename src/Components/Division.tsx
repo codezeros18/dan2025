@@ -13,13 +13,13 @@ import Visual from "../assets/Visual2.webp";
 import Website from "../assets/Website2.webp";
 import Logo from "../assets/logo6.webp";
 
-import KennyModal from "../assets/Kenny.jpg";
+import GegeModal from "../assets/Mikael.jpg";
 import LintangModal from "../assets/Lintang.jpg";
 import VasselModal from "../assets/Vassel.jpg";
 import SternModal from "../assets/Stern.jpg";
 import ThereModal from "../assets/There.jpg";
 import RiekheModal from "../assets/Riekhe.jpg";
-import JustineModal from "../assets/Justine.jpg";
+import JosiahModal from "../assets/josiah.jpg";
 import CheliModal from "../assets/Cheli.jpg";
 import ChrisModal from "../assets/Chris.jpg";
 import DerrenModal from "../assets/Derren.jpg";
@@ -31,7 +31,7 @@ import OwenModal from "../assets/Owen.jpg";
 import ChloeModal from "../assets/Chloe.jpg";
 import FeliciaModal from "../assets/Felicia.jpg";
 import JessicaModal from "../assets/Jessica.jpg";
-import JoshModal from "../assets/Josh.jpg";
+import GlenardModal from "../assets/Glenard.jpg";
 import AndrewModal from "../assets/Andrew.jpg";
 import RafaModal from "../assets/Rafa.jpg";
 
@@ -58,7 +58,7 @@ const Division: React.FC = () => {
         icon: Website,
         label: "Website",
         desc: "Divisi Website (Vistara) Bertanggung jawab atas perancangan, pengembangan, dan pemeliharaan website resmi Duta Anti Narkoba UMN 2025. Vistara memastikan semua informasi terpublikasi dengan baik, interaktif, dan mudah diakses oleh publik.",
-        cards: [KennyModal, LintangModal],
+        cards: [LintangModal, GegeModal],
       },
       {
         icon: Acara,
@@ -88,7 +88,7 @@ const Division: React.FC = () => {
         icon: Perlengkapan,
         label: "Perlengkapan",
         desc: "Divisi Perlengkapan (Upakarana) Bertugas mengatur dan menyediakan seluruh kebutuhan logistik serta perlengkapan kegiatan. Upakarana memastikan semua persiapan teknis berjalan lancar.",
-        cards: [JustineModal, JoshModal],
+        cards: [JosiahModal, GlenardModal],
       },
       {
         icon: PR,
