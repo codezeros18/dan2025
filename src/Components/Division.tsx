@@ -14,15 +14,15 @@ import Website from "../assets/Website2.webp";
 import Logo from "../assets/logo6.webp";
 
 import GegeModal from "../assets/Mikael.jpg";
-import LintangModal from "../assets/Lintang.jpg";
+import LintangModal from "../assets/Lintang.JPG";
 import VasselModal from "../assets/Vassel.jpg";
-import SternModal from "../assets/Stern.jpg";
-import ThereModal from "../assets/There.jpg";
-import RiekheModal from "../assets/Riekhe.jpg";
+import SternModal from "../assets/Stern.JPG";
+import ThereModal from "../assets/There.JPG";
+import RiekheModal from "../assets/Riekhe.JPG";
 import JosiahModal from "../assets/josiah.jpg";
-import CheliModal from "../assets/Cheli.jpg";
+import CheliModal from "../assets/Cheli.JPG";
 import ChrisModal from "../assets/Chris.jpg";
-import DerrenModal from "../assets/Derren.jpg";
+import DerrenModal from "../assets/Derren.JPG";
 import StevModal from "../assets/Stev.jpg";
 import MarlonModal from "../assets/Marlon.jpg";
 import ShakiraModal from "../assets/Shakira.jpg";
@@ -32,8 +32,8 @@ import ChloeModal from "../assets/Chloe.jpg";
 import FeliciaModal from "../assets/Felicia.jpg";
 import JessicaModal from "../assets/Jessica.jpg";
 import GlenardModal from "../assets/Glenard.jpg";
-import AndrewModal from "../assets/Andrew.jpg";
-import RafaModal from "../assets/Rafa.jpg";
+import AndrewModal from "../assets/Andrew.JPG";
+import RafaModal from "../assets/Rafa.JPG";
 
 const Division: React.FC = () => {
   const [open, setOpen] = useState(false);

@@ -6,25 +6,25 @@ import background2 from '../assets/backgroundblur.webp';
 
 // Images...
 import Vistara from '../assets/Website.png';
-import Adhyaksana from '../assets/BPH.png';
-import Mahosatva from '../assets/Acara.png';
-import Samskruti from '../assets/Dokum.png';
-import Rupaka from '../assets/Visual.png';
-import Rakshana from '../assets/Keamanan.png';
-import Upakarana from '../assets/Perlengkapan.png';
-import Sambandha from '../assets/PR.png';
-import Dhanika from '../assets/Sponsor.png';
+import Adhyaksana from '../assets/BPH.PNG';
+import Mahosatva from '../assets/Acara.PNG';
+import Samskruti from '../assets/Dokum.PNG';
+import Rupaka from '../assets/Visual.PNG';
+import Rakshana from '../assets/Keamanan.PNG';
+import Upakarana from '../assets/Perlengkapan.PNG';
+import Sambandha from '../assets/PR.PNG';
+import Dhanika from '../assets/Sponsor.PNG';
 
-import KennyModal from '../assets/Kenny.jpg';
-import LintangModal from '../assets/Lintang.jpg';
+import KennyModal from '../assets/Kenny.JPG';
+import LintangModal from '../assets/Lintang.JPG';
 import VasselModal from '../assets/Vassel.jpg';
-import SternModal from '../assets/Stern.jpg';
-import ThereModal from '../assets/There.jpg';
-import RiekheModal from '../assets/Riekhe.jpg';
-import JustineModal from '../assets/Justine.jpg';
-import CheliModal from '../assets/Cheli.jpg';
+import SternModal from '../assets/Stern.JPG';
+import ThereModal from '../assets/There.JPG';
+import RiekheModal from '../assets/Riekhe.JPG';
+import JustineModal from '../assets/Justine.JPG';
+import CheliModal from '../assets/Cheli.JPG';
 import ChrisModal from '../assets/Chris.jpg';
-import DerrenModal from '../assets/Derren.jpg';
+import DerrenModal from '../assets/Derren.JPG';
 import StevModal from '../assets/Stev.jpg';
 import MarlonModal from '../assets/Marlon.jpg';
 import ShakiraModal from '../assets/Shakira.jpg';
@@ -34,8 +34,8 @@ import ChloeModal from '../assets/Chloe.jpg';
 import FeliciaModal from '../assets/Felicia.jpg';
 import JessicaModal from '../assets/Jessica.jpg';
 import JoshModal from '../assets/Josh.jpg';
-import AndrewModal from '../assets/Andrew.jpg';
-import RafaModal from '../assets/Rafa.jpg';
+import AndrewModal from '../assets/Andrew.JPG';
+import RafaModal from '../assets/Rafa.JPG';
 
 interface Group {
   id: number;
