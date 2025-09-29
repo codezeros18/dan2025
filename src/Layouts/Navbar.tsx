@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
   className="fixed top-5 left-0 right-0 z-[999] px-4 md:px-12"
 >
   <div
-    className="w-full max-w-[2200px] mx-auto px-0 xl:px-12
+    className="w-full max-w-7xl mx-auto px-0 xl:px-12
                backdrop-blur-lg shadow-md rounded-[20px]
                bg-gradient-to-r from-[#0a1a4f]/80 via-[#1a2e7a]/80 to-[#27459b]/80"
   >
