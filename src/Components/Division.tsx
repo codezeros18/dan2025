@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 
 import Acara from "../assets/Acara2.webp";
-import Bph from "../assets/Bph2.webp";
+import Bph from "../assets/BPH2.webp";
 import Dokum from "../assets/Dokum2.webp";
 import Keamanan from "../assets/Keamanan2.webp";
 import Perlengkapan from "../assets/Perlengkapan2.webp";
