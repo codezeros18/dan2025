@@ -4,7 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 
 export default defineConfig({
-  base: '/dan2025/',
   build: {
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
