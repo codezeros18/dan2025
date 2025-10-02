@@ -4,7 +4,7 @@ import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 
 import Logo from "../assets/logo6.webp";
 
-import Acara from "../assets/acara.png";
+import Acara from "../assets/acara.PNG";
 import Bph from "../assets/bph.png";
 import Dekor from "../assets/dekor.png";
 import Dokum from "../assets/dokum.png";
