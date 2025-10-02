@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
       {/* Mobile: Address & Social Icons */}
       <div className="md:hidden flex flex-col items-center space-y-6">
         <p className="text-gray-600 text-sm text-center">
-          Universitas Multimedia NPusantara <br />
+          Universitas Multimedia Nusantara <br />
           Jl. Scientia Boulevard, Gading Serpong <br />
           Tangerang, Banten 15811, Indonesia
         </p>

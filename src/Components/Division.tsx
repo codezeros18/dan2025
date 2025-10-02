@@ -1,17 +1,25 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 
-import Acara from "../assets/Acara2.webp";
-import Bph from "../assets/BPH2.webp";
-import Dokum from "../assets/Dokum2.webp";
-import Keamanan from "../assets/Keamanan2.webp";
-import Perlengkapan from "../assets/Perlengkapan2.webp";
-import PR from "../assets/PR2.webp";
-import Sponsor from "../assets/Sponsor2.webp";
-import Visual from "../assets/Visual2.webp";
-import Website from "../assets/Website2.webp";
 import Logo from "../assets/logo6.webp";
+
+import Acara from "../assets/acara.png";
+import Bph from "../assets/bph.png";
+import Dekor from "../assets/dekor.png";
+import Dokum from "../assets/dokum.png";
+import Keamanan from "../assets/keamanan.png";
+import Perlengkapan from "../assets/perlengkapan.png";
+import Pr from "../assets/pr.png";
+import Visual from "../assets/visual.png";
+import Sponsor from "../assets/sponsor.png";
+import Website from "../assets/website.png";
+import Regis from "../assets/regis.png";
+import Makeup from "../assets/makeup.png";
+import Fm from "../assets/fm.png";
+import Pic from "../assets/pic.png";
+
+import unknown from "../assets/unknown.jpg";
 
 import GegeModal from "../assets/Mikael.jpg";
 import LintangModal from "../assets/Lintang.jpg";
@@ -24,7 +32,7 @@ import CheliModal from "../assets/Cheli.jpg";
 import ChrisModal from "../assets/Chris.jpg";
 import DerrenModal from "../assets/Derren.jpg";
 import StevModal from "../assets/Stev.jpg";
-import MarlonModal from "../assets/Marlon.jpg";
+// import MarlonModal from "../assets/Marlon.jpg";
 import ShakiraModal from "../assets/Shakira.jpg";
 import NicoleModal from "../assets/Nicole.jpg";
 import OwenModal from "../assets/Owen.jpg";
@@ -39,68 +47,105 @@ const Division: React.FC = () => {
   const [open, setOpen] = useState(false);
   const [selectedDivision, setSelectedDivision] = useState<number | null>(null);
   const [cardIndex, setCardIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
 
-  // Dynamically adjust radius based on screen size
-  const radius =
-    window.innerWidth < 640 ? 120 : // mobile
-    window.innerWidth < 1024 ? 180 : // tablet
-    230; // desktop
+  // Effect to handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const radius = isMobile ? 180 : 250;
 
   const menuItems = useMemo(
     () => [
       {
         icon: Bph,
         label: "BPH",
-        desc: "Divisi Badan Pengurus Harian (Adhyaksana) Merupakan pusat koordinasi seluruh kegiatan organisasi. Adhyaksana memastikan setiap divisi berjalan selaras, melakukan pengambilan keputusan strategis, dan menjaga arah visi serta misi organisasi.",
+        desc: "Divisi Badan Pengurus Harian (Adhyaksana) Merupakan pusat koordinasi seluruh kegiatan organisasi...",
         cards: [VasselModal, FeliciaModal, JessicaModal, OwenModal, ChloeModal, NicoleModal],
       },
       {
         icon: Website,
         label: "Website",
-        desc: "Divisi Website (Vistara) Bertanggung jawab atas perancangan, pengembangan, dan pemeliharaan website resmi Duta Anti Narkoba UMN 2025. Vistara memastikan semua informasi terpublikasi dengan baik, interaktif, dan mudah diakses oleh publik.",
+        desc: "Divisi Website (Jala) Bertanggung jawab atas perancangan, pengembangan, dan pemeliharaan website...",
         cards: [LintangModal, GegeModal],
       },
       {
         icon: Acara,
         label: "Acara",
-        desc: "Divisi Acara (Mahosatva) Bertugas untuk merancang, merencanakan, dan melaksanakan seluruh rangkaian kegiatan dan kampanye anti narkoba. Mahosatva menciptakan acara yang edukatif, inspiratif, dan berdampak luas.",
+        desc: "Divisi Acara (Mahosatva) Bertugas untuk merancang, merencanakan, dan melaksanakan seluruh rangkaian kegiatan...",
         cards: [SternModal, RafaModal],
       },
       {
         icon: Dokum,
         label: "Dokumentasi",
-        desc: "Divisi Dokumentasi (Samskruti) Mengabadikan setiap momen kegiatan melalui foto dan video. Samskruti juga bertugas menyusun arsip dokumentasi dan mempublikasikan konten yang menggambarkan semangat gerakan Duta Anti Narkoba 2025.",
-        cards: [StevModal, MarlonModal],
+        desc: "Divisi Dokumentasi (Samskruti) Mengabadikan setiap momen kegiatan melalui foto dan video...",
+        cards: [StevModal, unknown],
       },
       {
         icon: Visual,
         label: "Visual",
-        desc: "Divisi Visual (Rupaka) Bertanggung jawab atas seluruh aspek visual, termasuk desain grafis, branding, dan estetika publikasi. Rupaka memastikan identitas visual organisasi kuat dan menarik.",
+        desc: "Divisi Visual (Rupaka) Bertanggung jawab atas seluruh aspek visual, termasuk desain grafis...",
         cards: [ThereModal, ChrisModal],
       },
       {
         icon: Keamanan,
         label: "Keamanan",
-        desc: "Divisi Keamanan (Rakshana) Menjaga keamanan dan ketertiban dalam seluruh kegiatan organisasi, baik online maupun offline. Rakshana memastikan setiap program berjalan aman dan nyaman untuk semua pihak.",
+        desc: "Divisi Keamanan (Rakshana) Menjaga keamanan dan ketertiban dalam seluruh kegiatan organisasi...",
         cards: [DerrenModal, AndrewModal],
       },
       {
         icon: Perlengkapan,
         label: "Perlengkapan",
-        desc: "Divisi Perlengkapan (Upakarana) Bertugas mengatur dan menyediakan seluruh kebutuhan logistik serta perlengkapan kegiatan. Upakarana memastikan semua persiapan teknis berjalan lancar.",
+        desc: "Divisi Perlengkapan (Upakarana) Bertugas mengatur dan menyediakan seluruh kebutuhan logistik...",
         cards: [JosiahModal, GlenardModal],
       },
       {
-        icon: PR,
+        icon: Pr,
         label: "Humas",
-        desc: "Divisi Hubungan Masyarakat (Sambandha) Menjalin relasi dan membangun komunikasi strategis dengan pihak eksternal, termasuk media, komunitas, dan institusi lain. Sambandha menjadi wajah organisasi dalam membina citra positif di masyarakat.",
+        desc: "Divisi Hubungan Masyarakat (Sambandha) Menjalin relasi dan membangun komunikasi strategis...",
         cards: [RiekheModal, CheliModal],
       },
       {
         icon: Sponsor,
         label: "Sponsor",
-        desc: "Divisi Dana dan Sponsor (Dhanika) Bertanggung jawab mencari, mengelola, dan mempertanggungjawabkan dana serta sponsorship. Dhanika memastikan keberlangsungan kegiatan melalui pendanaan yang transparan dan profesional.",
+        desc: "Divisi Dana dan Sponsor (Dhanika) Bertanggung jawab mencari, mengelola, dan mempertanggungjawabkan dana...",
         cards: [ShakiraModal],
+      },
+      {
+        icon: Dekor,
+        label: "Dekorasi",
+        desc: "Divisi Dekorasi (Alankara) Bertanggung jawab memperindah dan menata seluruh elemen visual acara...",
+        cards: [unknown, unknown],
+      },
+      {
+        icon: Regis,
+        label: "Registrasi",
+        desc: "Divisi Registrasi (Pravesha) Mengatur proses pendaftaran peserta, tamu, dan pihak eksternal...",
+        cards: [unknown, unknown],
+      },
+      {
+        icon: Makeup,
+        label: "Makeup",
+        desc: "Divisi Makeup (Sundara) Berperan mendukung penampilan anggota maupun talent dalam kegiatan organisasi...",
+        cards: [unknown],
+      },
+      {
+        icon: Fm,
+        label: "Fresh Money",
+        desc: "Divisi Fresh Money (Arthapati) Fokus pada pencarian pendanaan tambahan melalui berbagai inisiatif kreatif...",
+        cards: [unknown, unknown],
+      },
+      {
+        icon: Pic,
+        label: "PIC",
+        desc: "Divisi Person In Charge (Nayaka) Mengemban tanggung jawab khusus sebagai koordinator lapangan...",
+        cards: [unknown],
       },
     ],
     []
@@ -120,6 +165,12 @@ const Division: React.FC = () => {
       return { opacity: 1, x, y, scale: 1 };
     },
     exit: { opacity: 0, x: 0, y: 0, scale: 0.6 },
+  };
+
+  const gridItemVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.8 },
   };
 
   const handleOpenDivision = (index: number) => {
@@ -142,8 +193,7 @@ const Division: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen w-auto bg-gradient-to-br from-[#3d2ca6]/90 via-[#2b227a]/70 to-[#0a1a4f]/100 overflow-hidden relative">
-      {/* Blur + background overlay when modal open */}
+    <div className="flex items-center justify-center min-h-screen w-auto bg-gradient-to-br py-10 md:py-0 from-[#3d2ca6]/90 via-[#2b227a]/70 to-[#0a1a4f]/100 overflow-y-auto relative p-4">
       <AnimatePresence>
         {selectedDivision !== null && (
           <motion.div
@@ -154,52 +204,10 @@ const Division: React.FC = () => {
           />
         )}
       </AnimatePresence>
-
-      {/* Orbit Wrapper */}
-      <div className="relative w-[90vw] max-w-[600px] h-[90vw] max-h-[600px] flex items-center justify-center z-20">
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              key="orbit"
-              className="absolute inset-0 flex items-center justify-center"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-            >
-              {menuItems.map((item, i) => {
-                const angle = (360 / menuItems.length) * i - 90;
-                const x = radius * Math.cos((angle * Math.PI) / 180);
-                const y = radius * Math.sin((angle * Math.PI) / 180);
-
-                return (
-                  <motion.div
-                    key={i}
-                    custom={i}
-                    variants={itemVariants}
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="absolute"
-                    style={{ transform: `translate(${x}px, ${y}px)` }}
-                  >
-                    <button
-                      className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-48 lg:h-48 rounded-full flex items-center justify-center hover:scale-110 transition"
-                      onClick={() => handleOpenDivision(i)}
-                    >
-                      <img
-                        src={item.icon}
-                        alt={item.label}
-                        className="w-full h-full object-cover rounded-full select-none"
-                        draggable={false}
-                      />
-                    </button>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Center Toggle */}
+      
+      {/* Container for both layouts */}
+      <div className="relative flex flex-col items-center justify-center w-full max-w-6xl">
+        {/* Center Toggle Button */}
         <motion.button
           onClick={() => {
             if (selectedDivision !== null) {
@@ -210,9 +218,7 @@ const Division: React.FC = () => {
           }}
           animate={{ rotate: open ? 360 : 0 }}
           transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 p-2 sm:p-3 rounded-full 
-          bg-gradient-to-br from-[#0a1a4f]/100 to-[#3d2ca6]/90 flex items-center justify-center shadow-lg 
-          hover:scale-105 transition z-20"
+          className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 p-2 sm:p-3 rounded-full bg-gradient-to-br from-[#0a1a4f]/100 to-[#3d2ca6]/90 flex items-center justify-center shadow-lg hover:scale-105 transition z-20"
         >
           <img
             src={Logo}
@@ -221,6 +227,86 @@ const Division: React.FC = () => {
             draggable={false}
           />
         </motion.button>
+
+        {/* Conditional Rendering Logic */}
+        <AnimatePresence>
+          {open && (
+            <>
+              {/* Circular Layout for Desktop */}
+              {!isMobile && (
+                <motion.div
+                  key="orbit"
+                  className="absolute inset-0 flex items-center justify-center"
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
+                >
+                  {menuItems.map((item, i) => {
+                    const angle = (360 / menuItems.length) * i - 90;
+                    const x = radius * Math.cos((angle * Math.PI) / 180);
+                    const y = radius * Math.sin((angle * Math.PI) / 180);
+
+                    return (
+                      <motion.div
+                        key={i}
+                        custom={i}
+                        variants={itemVariants}
+                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                        className="absolute"
+                        style={{ transform: `translate(${x}px, ${y}px)` }}
+                      >
+                        <button
+                          className="w-18 h-18 md:w-24 md:h-24 rounded-full flex items-center justify-center hover:scale-110 transition"
+                          onClick={() => handleOpenDivision(i)}
+                        >
+                          <img
+                            src={item.icon}
+                            alt={item.label}
+                            className="w-full h-full object-cover rounded-full select-none"
+                            draggable={false}
+                          />
+                        </button>
+                      </motion.div>
+                    );
+                  })}
+                </motion.div>
+              )}
+
+              {/* Grid Layout for Mobile */}
+              {isMobile && (
+                <motion.div
+                  key="grid"
+                  className="grid grid-cols-2 gap-4 mt-8"
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="hidden"
+                >
+                  {menuItems.map((item, i) => (
+                    <motion.div
+                      key={i}
+                      variants={gridItemVariants}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                    >
+                      <button
+                        className="w-24 h-24 rounded-full flex items-center justify-center hover:scale-110 transition"
+                        onClick={() => handleOpenDivision(i)}
+                      >
+                        <img
+                          src={item.icon}
+                          alt={item.label}
+                          className="w-full h-full object-cover rounded-full select-none"
+                          draggable={false}
+                        />
+                      </button>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              )}
+            </>
+          )}
+        </AnimatePresence>
       </div>
 
       {/* Modal Cards */}
@@ -233,11 +319,13 @@ const Division: React.FC = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+            <div
+              className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+              onClick={() => setSelectedDivision(null)}
+            />
             <motion.div
               key="card-overlay"
-              className="relative z-10 bg-gradient-to-br from-[#3d2ca6]/90 via-[#2b227a]/70 to-[#0a1a4f]/100
-              rounded-3xl shadow-xl overflow-hidden w-full max-w-sm sm:max-w-md md:max-w-lg"
+              className="relative z-10 bg-gradient-to-br from-[#3d2ca6]/90 via-[#2b227a]/70 to-[#0a1a4f]/100 rounded-3xl shadow-xl overflow-hidden w-full max-w-sm"
               initial={{ opacity: 0, scale: 0.8, y: 40 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 40 }}
@@ -256,22 +344,19 @@ const Division: React.FC = () => {
               <div className="flex justify-between items-center px-4 sm:px-6 pb-4 sm:pb-6 gap-4">
                 <button
                   onClick={handlePrev}
-                  className="bg-white bg-opacity-80 p-2 sm:p-3 rounded-full shadow-lg hover:bg-opacity-100 
-                    transition duration-300 ease-in-out transform hover:scale-110 active:scale-95"
+                  className="bg-white/80 p-2 sm:p-3 rounded-full shadow-lg hover:bg-opacity-100 transition duration-300 ease-in-out transform hover:scale-110 active:scale-95"
                 >
                   <FaChevronLeft size={16} />
                 </button>
                 <button
                   onClick={() => setSelectedDivision(null)}
-                  className="bg-red-600 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-red-700 
-                    transition duration-300 ease-in-out transform hover:scale-110 active:scale-95"
+                  className="bg-red-600 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-red-700 transition duration-300 ease-in-out transform hover:scale-110 active:scale-95"
                 >
                   <FaTimes size={16} />
                 </button>
                 <button
                   onClick={handleNext}
-                  className="bg-white bg-opacity-80 p-2 sm:p-3 rounded-full shadow-lg hover:bg-opacity-100 
-                    transition duration-300 ease-in-out transform hover:scale-110 active:scale-95"
+                  className="bg-white/80 p-2 sm:p-3 rounded-full shadow-lg hover:bg-opacity-100 transition duration-300 ease-in-out transform hover:scale-110 active:scale-95"
                 >
                   <FaChevronRight size={16} />
                 </button>
