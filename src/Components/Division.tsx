@@ -62,94 +62,95 @@ const Division: React.FC = () => {
   const radius = isMobile ? 180 : 250;
 
   const menuItems = useMemo(
-    () => [
-      {
-        icon: Bph,
-        label: "BPH",
-        desc: "Divisi Badan Pengurus Harian (Adhyaksana) Merupakan pusat koordinasi seluruh kegiatan organisasi...",
-        cards: [VasselModal, FeliciaModal, JessicaModal, OwenModal, ChloeModal, NicoleModal],
-      },
-      {
-        icon: Website,
-        label: "Website",
-        desc: "Divisi Website (Jala) Bertanggung jawab atas perancangan, pengembangan, dan pemeliharaan website...",
-        cards: [LintangModal, GegeModal],
-      },
-      {
-        icon: Acara,
-        label: "Acara",
-        desc: "Divisi Acara (Mahosatva) Bertugas untuk merancang, merencanakan, dan melaksanakan seluruh rangkaian kegiatan...",
-        cards: [SternModal, RafaModal],
-      },
-      {
-        icon: Dokum,
-        label: "Dokumentasi",
-        desc: "Divisi Dokumentasi (Samskruti) Mengabadikan setiap momen kegiatan melalui foto dan video...",
-        cards: [StevModal, unknown],
-      },
-      {
-        icon: Visual,
-        label: "Visual",
-        desc: "Divisi Visual (Rupaka) Bertanggung jawab atas seluruh aspek visual, termasuk desain grafis...",
-        cards: [ThereModal, ChrisModal],
-      },
-      {
-        icon: Keamanan,
-        label: "Keamanan",
-        desc: "Divisi Keamanan (Rakshana) Menjaga keamanan dan ketertiban dalam seluruh kegiatan organisasi...",
-        cards: [DerrenModal, AndrewModal],
-      },
-      {
-        icon: Perlengkapan,
-        label: "Perlengkapan",
-        desc: "Divisi Perlengkapan (Upakarana) Bertugas mengatur dan menyediakan seluruh kebutuhan logistik...",
-        cards: [JosiahModal, GlenardModal],
-      },
-      {
-        icon: Pr,
-        label: "Humas",
-        desc: "Divisi Hubungan Masyarakat (Sambandha) Menjalin relasi dan membangun komunikasi strategis...",
-        cards: [RiekheModal, CheliModal],
-      },
-      {
-        icon: Sponsor,
-        label: "Sponsor",
-        desc: "Divisi Dana dan Sponsor (Dhanika) Bertanggung jawab mencari, mengelola, dan mempertanggungjawabkan dana...",
-        cards: [ShakiraModal],
-      },
-      {
-        icon: Dekor,
-        label: "Dekorasi",
-        desc: "Divisi Dekorasi (Alankara) Bertanggung jawab memperindah dan menata seluruh elemen visual acara...",
-        cards: [unknown, unknown],
-      },
-      {
-        icon: Regis,
-        label: "Registrasi",
-        desc: "Divisi Registrasi (Pravesha) Mengatur proses pendaftaran peserta, tamu, dan pihak eksternal...",
-        cards: [unknown, unknown],
-      },
-      {
-        icon: Makeup,
-        label: "Makeup",
-        desc: "Divisi Makeup (Sundara) Berperan mendukung penampilan anggota maupun talent dalam kegiatan organisasi...",
-        cards: [unknown],
-      },
-      {
-        icon: Fm,
-        label: "Fresh Money",
-        desc: "Divisi Fresh Money (Arthapati) Fokus pada pencarian pendanaan tambahan melalui berbagai inisiatif kreatif...",
-        cards: [unknown, unknown],
-      },
-      {
-        icon: Pic,
-        label: "PIC",
-        desc: "Divisi Person In Charge (Nayaka) Mengemban tanggung jawab khusus sebagai koordinator lapangan...",
-        cards: [unknown],
-      },
-    ],
-    []
-  );
+  () => [
+    {
+      icon: Bph,
+      label: "BPH",
+      desc: "Divisi Badan Pengurus Harian (Adhyaksana) Merupakan pusat koordinasi seluruh kegiatan organisasi. Adhyaksana memastikan setiap divisi berjalan selaras, melakukan pengambilan keputusan strategis, dan menjaga arah visi serta misi organisasi.",
+      cards: [VasselModal, FeliciaModal, JessicaModal, OwenModal, ChloeModal, NicoleModal],
+    },
+    {
+      icon: Website,
+      label: "Website",
+      desc: "Divisi Website (Jala) Bertanggung jawab atas perancangan, pengembangan, dan pemeliharaan website resmi Duta Anti Narkoba UMN 2025. Jala memastikan semua informasi terpublikasi dengan baik, interaktif, dan mudah diakses oleh publik.",
+      cards: [LintangModal, GegeModal],
+    },
+    {
+      icon: Acara,
+      label: "Acara",
+      desc: "Divisi Acara (Mahosatva) Bertugas untuk merancang, merencanakan, dan melaksanakan seluruh rangkaian kegiatan dan kampanye anti narkoba. Mahosatva menciptakan acara yang edukatif, inspiratif, dan berdampak luas.",
+      cards: [SternModal, RafaModal],
+    },
+    {
+      icon: Dokum,
+      label: "Dokumentasi",
+      desc: "Divisi Dokumentasi (Samskruti) Mengabadikan setiap momen kegiatan melalui foto dan video. Samskruti juga bertugas menyusun arsip dokumentasi dan mempublikasikan konten yang menggambarkan semangat gerakan Duta Anti Narkoba 2025.",
+      cards: [StevModal, unknown],
+    },
+    {
+      icon: Visual,
+      label: "Visual",
+      desc: "Divisi Visual (Rupaka) Bertanggung jawab atas seluruh aspek visual, termasuk desain grafis, branding, dan estetika publikasi. Rupaka memastikan identitas visual organisasi kuat dan menarik.",
+      cards: [ThereModal, ChrisModal],
+    },
+    {
+      icon: Keamanan,
+      label: "Keamanan",
+      desc: "Divisi Keamanan (Rakshana) Menjaga keamanan dan ketertiban dalam seluruh kegiatan organisasi, baik online maupun offline. Rakshana memastikan setiap program berjalan aman dan nyaman untuk semua pihak.",
+      cards: [DerrenModal, AndrewModal],
+    },
+    {
+      icon: Perlengkapan,
+      label: "Perlengkapan",
+      desc: "Divisi Perlengkapan (Upakarana) Bertugas mengatur dan menyediakan seluruh kebutuhan logistik serta perlengkapan kegiatan. Upakarana memastikan semua persiapan teknis berjalan lancar.",
+      cards: [JosiahModal, GlenardModal],
+    },
+    {
+      icon: Pr,
+      label: "Humas",
+      desc: "Divisi Hubungan Masyarakat (Sambandha) Menjalin relasi dan membangun komunikasi strategis dengan pihak eksternal, termasuk media, komunitas, dan institusi lain. Sambandha menjadi wajah organisasi dalam membina citra positif di masyarakat.",
+      cards: [RiekheModal, CheliModal],
+    },
+    {
+      icon: Sponsor,
+      label: "Sponsor",
+      desc: "Divisi Dana dan Sponsor (Dhanika) Bertanggung jawab mencari, mengelola, dan mempertanggungjawabkan dana serta sponsorship. Dhanika memastikan keberlangsungan kegiatan melalui pendanaan yang transparan dan profesional.",
+      cards: [ShakiraModal],
+    },
+    {
+      icon: Dekor,
+      label: "Dekorasi",
+      desc: "Divisi Dekorasi (Alankara) Bertanggung jawab memperindah dan menata seluruh elemen visual acara. Alankara memastikan suasana acara terasa hidup, sesuai tema, serta memberikan pengalaman estetik yang berkesan bagi peserta dan tamu undangan.",
+      cards: [unknown],
+    },
+    {
+      icon: Regis,
+      label: "Registrasi",
+      desc: "Divisi Registrasi (Pravesha) Mengatur proses pendaftaran peserta, tamu, dan pihak eksternal. Pravesha memastikan setiap proses administrasi berjalan lancar, tertib, dan profesional, mulai dari penerimaan hingga pendataan peserta.",
+      cards: [unknown],
+    },
+    {
+      icon: Makeup,
+      label: "Makeup",
+      desc: "Divisi Makeup (Sundara) Berperan mendukung penampilan anggota maupun talent dalam kegiatan organisasi. Sundara memastikan setiap penampilan sesuai konsep acara, menambah kepercayaan diri, serta menjaga citra profesional organisasi.",
+      cards: [unknown],
+    },
+    {
+      icon: Fm,
+      label: "Fresh Money",
+      desc: "Divisi Fresh Money (Arthapati) Fokus pada pencarian pendanaan tambahan melalui berbagai inisiatif kreatif. Arthapati membantu memperkuat keuangan organisasi dengan strategi fundraising yang inovatif, transparan, dan berkelanjutan.",
+      cards: [unknown, unknown],
+    },
+    {
+      icon: Pic,
+      label: "PIC",
+      desc: "Divisi Person In Charge (Nayaka) Mengemban tanggung jawab khusus sebagai koordinator lapangan maupun penanggung jawab teknis dalam kegiatan. Nayaka memastikan setiap detail acara terlaksana dengan baik, menjadi penghubung antar divisi, dan menjamin kelancaran eksekusi.",
+      cards: [unknown],
+    },
+  ],
+  []
+);
+
 
   const containerVariants = {
     hidden: { transition: { staggerChildren: 0.05, staggerDirection: -1 } },
