@@ -20,14 +20,11 @@ import Fm from "../assets/fm.png";
 import Pic from "../assets/pic.png";
 
 import unknown from "../assets/unknown.jpg";
-
-import GegeModal from "../assets/Mikael.jpg";
 import LintangModal from "../assets/Lintang.JPG";
 import VasselModal from "../assets/Vassel.jpg";
 import SternModal from "../assets/Stern.JPG";
 import ThereModal from "../assets/There.JPG";
 import RiekheModal from "../assets/Riekhe.JPG";
-import JosiahModal from "../assets/josiah.jpg";
 import CheliModal from "../assets/Cheli.JPG";
 import ChrisModal from "../assets/Chris.jpg";
 import DerrenModal from "../assets/Derren.JPG";
@@ -45,6 +42,13 @@ import ErineModal from "../assets/Erine.jpg";
 import IreneModal from "../assets/Irene.jpg";
 import SelinaModal from "../assets/Selina.jpg";
 import MarlonModal from "../assets/Marlon2.jpg";
+import AlexModal from "../assets/Alex.jpg";
+import ChrisFMModal from "../assets/ChrisFM.jpg";
+import ErineDekorModal from "../assets/ErineDekor.JPG";
+import ChristieModal from "../assets/Christie.jpg";
+import GegeModal from "../assets/Gege.jpg";
+import JosiahModal from "../assets/Josiah.jpg";
+import KeishaModal from "../assets/Keisha.jpg";
 
 const Division: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -106,7 +110,7 @@ const Division: React.FC = () => {
         icon: Perlengkapan,
         label: "Perlengkapan",
         desc: "Divisi Perlengkapan (Upakara Naksatra) Bertugas mengatur dan menyediakan seluruh kebutuhan logistik serta perlengkapan kegiatan. Upakara Naksatra memastikan semua persiapan teknis berjalan lancar.",
-        cards: [JosiahModal, GlenardModal],
+        cards: [GlenardModal, JosiahModal],
       },
       {
         icon: Pr,
@@ -124,25 +128,25 @@ const Division: React.FC = () => {
         icon: Dekor,
         label: "Dekorasi",
         desc: "Divisi Dekorasi (Alankara Naksatra) Bertanggung jawab memperindah dan menata seluruh elemen visual acara. Alankara Naksatra memastikan suasana acara terasa hidup, sesuai tema, serta memberikan pengalaman estetik yang berkesan bagi peserta dan tamu undangan.",
-        cards: [unknown],
+        cards: [AlexModal, ErineDekorModal],
       },
       {
         icon: Regis,
         label: "Registrasi",
         desc: "Divisi Registrasi (Pravesa Naksatra) Mengatur proses pendaftaran peserta, tamu, dan pihak eksternal. Pravesa Naksatra memastikan setiap proses administrasi berjalan lancar, tertib, dan profesional, mulai dari penerimaan hingga pendataan peserta.",
-        cards: [IreneModal],
+        cards: [IreneModal, KeishaModal],
       },
       {
         icon: Makeup,
         label: "Makeup",
         desc: "Divisi Makeup (Rupa Naksatra) Berperan mendukung penampilan anggota maupun talent dalam kegiatan organisasi. Rupa Naksatra memastikan setiap penampilan sesuai konsep acara, menambah kepercayaan diri, serta menjaga citra profesional organisasi.",
-        cards: [unknown],
+        cards: [ChristieModal],
       },
       {
         icon: Fm,
         label: "Fresh Money",
         desc: "Divisi Fresh Money (Dhana Naksatra) Fokus pada pencarian pendanaan tambahan melalui berbagai inisiatif kreatif. Dhana Naksatra membantu memperkuat keuangan organisasi dengan strategi fundraising yang inovatif, transparan, dan berkelanjutan.",
-        cards: [SelinaModal, unknown],
+        cards: [SelinaModal, ChrisFMModal],
       },
       {
         icon: Pic,
