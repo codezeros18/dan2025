@@ -48,7 +48,7 @@ import ChrisFMModal from "../assets/ChrisFM.jpg";
 import ErineDekorModal from "../assets/ErineDekor.JPG";
 import ChristieModal from "../assets/Christie.jpg";
 import GegeModal from "../assets/Gege.jpg";
-import JosiahModal from "../assets/Josiah.jpg";
+import JosiahModal from "../assets/josiah.jpg";
 import KeishaModal from "../assets/Keisha.jpg";
 
 const Division: React.FC = () => {
