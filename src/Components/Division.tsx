@@ -20,6 +20,7 @@ import Fm from "../assets/fm.png";
 import Pic from "../assets/pic.png";
 
 import unknown from "../assets/unknown.jpg";
+
 import LintangModal from "../assets/Lintang.JPG";
 import VasselModal from "../assets/Vassel.jpg";
 import SternModal from "../assets/Stern.JPG";
