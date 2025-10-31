@@ -20,27 +20,28 @@ const fadeInUp = {
 const Header: React.FC = () => {
   const prevRef = React.useRef<HTMLButtonElement>(null);
   const nextRef = React.useRef<HTMLButtonElement>(null);
+
   const slides = [
     {
-  title: "DGTS 2025 ", 
-  desc: "Spreading awareness about drugs and anti-drugs to high school students.",
-  button: "Explore Now",
-  link: "/proker"
-},
-{
-  title: "ANW 2025",
-  desc: "Contribute through donation, blood drives, and orphanage visits to make a real impact.",
-  button: "Donate Today",
-  link: "/proker"
-},
-{
-  title: "AWARDING NIGHT 2025",
-  desc: "Celebrate the finalists and close the event with an unforgettable awarding party night.",
-  button: "Join Us",
-  link: "/proker"
-}
-
+      title: "DGTS 2025 ",
+      desc: "Spreading awareness about drugs and anti-drugs to high school students.",
+      button: "Explore Now",
+      link: "/proker"
+    },
+    {
+      title: "ANW 2025",
+      desc: "Contribute through donation, blood drives, and orphanage visits to make a real impact.",
+      button: "Donate Today",
+      link: "/proker"
+    },
+    {
+      title: "AWARDING NIGHT 2025",
+      desc: "Celebrate the finalists and close the event with an unforgettable awarding party night.",
+      button: "Join Us",
+      link: "/proker"
+    }
   ];
+
   return (
     <section className="relative w-full min-h-screen flex font-josefin items-center justify-center px-6 py-12 overflow-hidden">
       {/* Background Video */}
@@ -58,70 +59,89 @@ const Header: React.FC = () => {
 
       {/* Content */}
       <div className="relative max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center z-10">
-        {/* Right Video Column */}
+        {/* Right Video Column (Carousel) */}
         <div className="relative max-w-full lg:max-w-[350px] xl:max-w-[450px] mx-auto order-2 lg:order-1">
-      <Swiper
-  modules={[Navigation, Pagination, Autoplay]}
-  pagination={{ clickable: true }}
-  autoplay={{ delay: 4000 }}
-  loop
-  navigation={{
-    prevEl: prevRef.current,
-    nextEl: nextRef.current,
-  } as NavigationOptions}
-  onBeforeInit={(swiper) => {
-    if (swiper.params.navigation && typeof swiper.params.navigation === "object") {
-      (swiper.params.navigation as NavigationOptions).prevEl = prevRef.current;
-      (swiper.params.navigation as NavigationOptions).nextEl = nextRef.current;
-    }
-  }}
-  className="rounded-2xl shadow-lg relative overflow-visible" // ⬅️ ini penting
->
-  {slides.map((item, index) => (
-    <SwiperSlide key={index}>
-      <div
-        className="flex flex-col items-center justify-center text-white p-8 md:p-10 rounded-2xl min-h-[350px] md:min-h-[250px] 
-                   bg-gradient-to-r from-cyan-500/50 via-blue-500/50 to-indigo-500/50 
-                   backdrop-blur-md shadow-lg"
-      >
-        <h2 className="text-xl md:text-2xl font-extrabold mb-3 text-center leading-snug drop-shadow-md">
-          {item.title}
-        </h2>
-        <p className="mb-6 text-center text-base md:text-lg mx-2 sm:mx-0 opacity-90">
-          {item.desc}
-        </p>
-        <Link
-          to={item.link}
-          className="px-6 py-2 rounded-full font-semibold text-white shadow-md 
-                     bg-gradient-to-r from-cyan-500/80 via-blue-500/80 to-indigo-500/80
-                     hover:shadow-xl hover:scale-105 transition-all duration-300"
-        >
-          {item.button}
-        </Link>
-      </div>
-    </SwiperSlide>
-  ))}
+          {/* group = trigger hover di desktop */}
+          <div className="relative group">
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 4000 }}
+              loop
+              grabCursor={true}
+              // navigation tetap diset ke tombol; di mobile tombolnya hidden
+              navigation={{
+                prevEl: prevRef.current,
+                nextEl: nextRef.current,
+              } as NavigationOptions}
+              onBeforeInit={(swiper) => {
+                if (swiper.params.navigation && typeof swiper.params.navigation === "object") {
+                  (swiper.params.navigation as NavigationOptions).prevEl = prevRef.current;
+                  (swiper.params.navigation as NavigationOptions).nextEl = nextRef.current;
+                }
+              }}
+              className="rounded-2xl shadow-lg relative overflow-visible"
+            >
+              {slides.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <div
+                    className="flex flex-col items-center justify-center text-white p-8 md:p-10 rounded-2xl min-h-[350px] md:min-h-[250px]
+                               bg-gradient-to-r from-cyan-500/50 via-blue-500/50 to-indigo-500/50
+                               backdrop-blur-md shadow-lg transition-all duration-300
+                               md:hover:shadow-2xl"
+                  >
+                    <h2 className="text-xl md:text-2xl font-extrabold mb-3 text-center leading-snug drop-shadow-md">
+                      {item.title}
+                    </h2>
+                    <p className="mb-6 text-center text-base md:text-lg mx-2 sm:mx-0 opacity-90">
+                      {item.desc}
+                    </p>
+                    <Link
+                      to={item.link}
+                      className="px-6 py-2 rounded-full font-semibold text-white shadow-md
+                                 bg-gradient-to-r from-cyan-500/80 via-blue-500/80 to-indigo-500/80
+                                 hover:shadow-xl hover:scale-105 transition-all duration-300"
+                    >
+                      {item.button}
+                    </Link>
+                  </div>
+                </SwiperSlide>
+              ))}
 
-  {/* Tombol Navigasi */}
-  <button
-    ref={prevRef}
-    className="absolute top-1/2 -left-0 z-20 -translate-y-1/2 
-               bg-white text-blue-700 rounded-full p-2 shadow-md 
-               hover:scale-110 transition cursor-pointer"
-  >
-    <ChevronLeft className="w-6 h-6" />
-  </button>
-  <button
-    ref={nextRef}
-    className="absolute top-1/2 -right-0 z-20 -translate-y-1/2 
-               bg-white text-blue-700 rounded-full p-2 shadow-md 
-               hover:scale-110 transition cursor-pointer"
-  >
-    <ChevronRight className="w-6 h-6" />
-  </button>
-</Swiper>
+              {/* NAV BUTTONS */}
+              {/* Disembunyikan default & di mobile (hidden md:flex).
+                  Saat hover area slider (group-hover) → fade-in & bisa diklik. */}
+              <button
+                ref={prevRef}
+                aria-label="Previous slide"
+                className="hidden md:flex absolute top-1/2 -left-3 -translate-y-1/2 z-20
+                           rounded-full p-2 md:p-3 border border-white/30
+                           bg-white/10 text-white shadow-sm backdrop-blur
+                           opacity-0 pointer-events-none
+                           transition-all duration-300
+                           group-hover:opacity-100 group-hover:pointer-events-auto
+                           hover:bg-white/20 hover:shadow-lg"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
 
-    </div>
+              <button
+                ref={nextRef}
+                aria-label="Next slide"
+                className="hidden md:flex absolute top-1/2 -right-3 -translate-y-1/2 z-20
+                           rounded-full p-2 md:p-3 border border-white/30
+                           bg-white/10 text-white shadow-sm backdrop-blur
+                           opacity-0 pointer-events-none
+                           transition-all duration-300
+                           group-hover:opacity-100 group-hover:pointer-events-auto
+                           hover:bg-white/20 hover:shadow-lg"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </Swiper>
+          </div>
+        </div>
+
         {/* Left Text Column */}
         <motion.div
           className="text-white drop-shadow-lg flex flex-col items-center justify-center text-center order-1 lg:order-2"
@@ -139,9 +159,6 @@ const Header: React.FC = () => {
             Smart, Healthy, and Fun
           </h4>
         </motion.div>
-
-        
-
       </div>
     </section>
   );
