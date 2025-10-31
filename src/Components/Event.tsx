@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
+import { IoCloseOutline } from "react-icons/io5";
 // @ts-ignore
 import "swiper/css/pagination";
 import { motion } from "framer-motion";
@@ -170,11 +171,11 @@ const Event: React.FC = () => {
                         e.stopPropagation();
                         setSelectedImg(null);
                       }}
-                      className="absolute top-3 right-3 text-white bg-black/40 hover:bg-black/60 rounded-full w-9 h-9 flex items-center justify-center text-xl cursor-pointer z-[100]"
+                      className="absolute top-3 right-3 text-white bg-black/40 hover:bg-black/60 rounded-full w-9 h-9 flex items-center justify-center text-2xl cursor-pointer z-[100]"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      ✕
+                      <IoCloseOutline />
                     </motion.button>
                   </div>
                 </motion.div>
