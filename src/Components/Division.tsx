@@ -1,9 +1,8 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 
 import Logo from "../assets/logo6.webp";
-
 import Acara from "../assets/Acara.PNG";
 import Bph from "../assets/BPH.PNG";
 import Dekor from "../assets/dekor.png";
@@ -51,23 +50,34 @@ import GegeModal from "../assets/Gege.jpg";
 import JosiahModal from "../assets/josiah.jpg";
 import KeishaModal from "../assets/Keisha.jpg";
 
+interface DivisionItem {
+  icon: string;
+  label: string;
+  desc: string;
+  cards: string[];
+}
+
 const Division: React.FC = () => {
-  const [open, setOpen] = useState(false);
   const [selectedDivision, setSelectedDivision] = useState<number | null>(null);
   const [cardIndex, setCardIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
 
-  // Effect to handle window resize
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 640);
-    };
+  const [outerAngle, setOuterAngle] = useState(0);
+  const [innerAngle, setInnerAngle] = useState(0);
+  const [velocityOuter, setVelocityOuter] = useState(0);
+  const [velocityInner, setVelocityInner] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const dragStartX = useRef(0);
+  const lastX = useRef(0);
+  const lastTime = useRef(0);
 
-  const radius = isMobile ? 180 : 250;
+  const friction = 0.96;
+  const baseSpeedOuter = 0.3;
+  const baseSpeedInner = -0.4;
+
+  const outerRadius = isMobile ? 250 : 350;
+  const innerRadius = isMobile ? 150 : 220;
 
   const menuItems = useMemo(
     () => [
@@ -159,27 +169,60 @@ const Division: React.FC = () => {
     []
   );
 
-  const containerVariants = {
-    hidden: { transition: { staggerChildren: 0.05, staggerDirection: -1 } },
-    visible: { transition: { staggerChildren: 0.05 } },
+  const midIndex = Math.ceil(menuItems.length / 2);
+  const outerItems = menuItems.slice(0, midIndex);
+  const innerItems = menuItems.slice(midIndex);
+
+  useEffect(() => {
+    let frame: number;
+    const animate = () => {
+      if (!isDragging) {
+        setVelocityOuter((v) => (Math.abs(v) < 0.01 ? 0 : v * friction));
+        setVelocityInner((v) => (Math.abs(v) < 0.01 ? 0 : v * friction));
+      }
+
+      setOuterAngle((a) => (a + baseSpeedOuter + velocityOuter) % 360);
+      setInnerAngle((a) => (a + baseSpeedInner + velocityInner) % 360);
+
+      frame = requestAnimationFrame(animate);
+    };
+    frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
+  }, [velocityOuter, velocityInner, isDragging]);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handlePointerDown = (x: number) => {
+    setIsDragging(true);
+    dragStartX.current = x;
+    lastX.current = x;
+    lastTime.current = performance.now();
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, x: 0, y: 0, scale: 0.6 },
-    visible: (i: number) => {
-      const angle = (360 / menuItems.length) * i - 90;
-      const x = radius * Math.cos((angle * Math.PI) / 180);
-      const y = radius * Math.sin((angle * Math.PI) / 180);
-      return { opacity: 1, x, y, scale: 1 };
-    },
-    exit: { opacity: 0, x: 0, y: 0, scale: 0.6 },
+  const handlePointerMove = (x: number) => {
+    if (isDragging) {
+      const now = performance.now();
+      const deltaX = x - lastX.current;
+      const deltaT = now - lastTime.current;
+
+      const v = deltaX / deltaT;
+
+      setOuterAngle((a) => (a + deltaX * 0.3) % 360);
+      setInnerAngle((a) => (a - deltaX * 0.3) % 360);
+
+      setVelocityOuter(v * 20);
+      setVelocityInner(v * 20);
+
+      lastX.current = x;
+      lastTime.current = now;
+    }
   };
 
-  const gridItemVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1 },
-    exit: { opacity: 0, scale: 0.8 },
-  };
+  const handlePointerUp = () => setIsDragging(false);
 
   const handleOpenDivision = (index: number) => {
     setSelectedDivision(index);
@@ -188,110 +231,138 @@ const Division: React.FC = () => {
 
   const handleNext = () => {
     if (selectedDivision === null) return;
-    setCardIndex((prev) => (prev + 1) % menuItems[selectedDivision].cards.length);
+    const len = menuItems[selectedDivision].cards.length;
+    setCardIndex((prev) => (prev + 1) % len);
   };
 
   const handlePrev = () => {
     if (selectedDivision === null) return;
-    setCardIndex((prev) => (prev - 1 + menuItems[selectedDivision].cards.length) % menuItems[selectedDivision].cards.length);
+    const len = menuItems[selectedDivision].cards.length;
+    setCardIndex((prev) => (prev - 1 + len) % len);
   };
 
-  return (
-    <div className="flex items-center justify-center min-h-screen w-auto bg-gradient-to-br py-10 md:py-0 from-[#3d2ca6]/90 via-[#2b227a]/70 to-[#0a1a4f]/100 overflow-y-auto relative p-4">
-      <AnimatePresence>{selectedDivision !== null && <motion.div className="absolute inset-0 bg-black/50 backdrop-blur-md z-10" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />}</AnimatePresence>
-
-      {/* Container for both layouts */}
-      <div className="relative flex flex-col items-center justify-center w-full max-w-6xl">
-        {/* Center Toggle Button */}
-        <motion.button
-          onClick={() => {
-            if (selectedDivision !== null) {
-              setSelectedDivision(null);
-            } else {
-              setOpen((p) => !p);
-            }
+  const renderRing = (
+    items: typeof menuItems,
+    angle: number,
+    radius: number,
+    size: number,
+    keyPrefix: string
+  ) =>
+    items.map((item, i) => {
+      const angleOffset = (360 / items.length) * i;
+      const totalAngle = (angle + angleOffset) * (Math.PI / 180);
+      const x = radius * Math.cos(totalAngle);
+      const y = radius * Math.sin(totalAngle);
+      return (
+        <motion.div
+          key={`${keyPrefix}-${i}`}
+          className="absolute pointer-events-auto"
+          style={{
+            transform: `translate(${x}px, ${y}px) scale(${isDragging ? 1.1 : 1})`,
+            transition: "transform 0.15s ease",
+            zIndex: keyPrefix === "outer" ? 30 : 20,
           }}
-          animate={{ rotate: open ? 360 : 0 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
-          className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 p-2 sm:p-3 rounded-full bg-gradient-to-br from-[#0a1a4f]/100 to-[#3d2ca6]/90 flex items-center justify-center shadow-lg hover:scale-105 transition z-20"
         >
-          <img src={Logo} alt="Menu" className="w-full h-full object-cover rounded-full select-none" draggable={false} />
-        </motion.button>
+          <button
+            onClick={() => handleOpenDivision(menuItems.indexOf(item))}
+            onDragStart={(e) => e.preventDefault()}
+            className={`rounded-full hover:scale-110 cursor-pointer transition ${
+              keyPrefix === "outer"
+                ? "w-[90px] h-[90px] md:w-[110px] md:h-[110px]"
+                : "w-[70px] h-[70px] md:w-[85px] md:h-[85px]"
+            }`}
+          >
+            <img
+              src={item.icon}
+              alt={item.label}
+              className="w-full h-full object-cover cursor-pointer rounded-full select-none"
+              draggable={false}
+              onDragStart={(e) => e.preventDefault()}
+            />
+          </button>
+        </motion.div>
+      );
+    });
 
-        {/* Conditional Rendering Logic */}
-        <AnimatePresence>
-          {open && (
-            <>
-              {/* Circular Layout for Desktop */}
-              {!isMobile && (
-                <motion.div key="orbit" className="absolute inset-0 flex items-center justify-center" variants={containerVariants} initial="hidden" animate="visible" exit="hidden">
-                  {menuItems.map((item, i) => {
-                    const angle = (360 / menuItems.length) * i - 90;
-                    const x = radius * Math.cos((angle * Math.PI) / 180);
-                    const y = radius * Math.sin((angle * Math.PI) / 180);
-
-                    return (
-                      <motion.div key={i} custom={i} variants={itemVariants} transition={{ duration: 0.4, ease: "easeInOut" }} className="absolute" style={{ transform: `translate(${x}px, ${y}px)` }}>
-                        <button className="w-18 h-18 md:w-24 md:h-24 rounded-full flex items-center justify-center hover:scale-110 transition" onClick={() => handleOpenDivision(i)}>
-                          <img src={item.icon} alt={item.label} className="w-full h-full object-cover rounded-full select-none" draggable={false} />
-                        </button>
-                      </motion.div>
-                    );
-                  })}
-                </motion.div>
-              )}
-
-              {/* Grid Layout for Mobile */}
-              {isMobile && (
-                <motion.div key="grid" className="grid grid-cols-2 gap-4 mt-8" variants={containerVariants} initial="hidden" animate="visible" exit="hidden">
-                  {menuItems.map((item, i) => (
-                    <motion.div key={i} variants={gridItemVariants} transition={{ duration: 0.4, ease: "easeInOut" }}>
-                      <button className="w-24 h-24 rounded-full flex items-center justify-center hover:scale-110 transition" onClick={() => handleOpenDivision(i)}>
-                        <img src={item.icon} alt={item.label} className="w-full h-full object-cover rounded-full select-none" draggable={false} />
-                      </button>
-                    </motion.div>
-                  ))}
-                </motion.div>
-              )}
-            </>
-          )}
-        </AnimatePresence>
+  return (
+    <div
+      className="flex items-center justify-center min-h-screen w-auto bg-gradient-to-br from-[#3d2ca6]/90 via-[#2b227a]/70 to-[#0a1a4f]/100 overflow-hidden relative select-none touch-pan-x"
+      onPointerDown={(e) => handlePointerDown(e.clientX)}
+      onPointerMove={(e) => handlePointerMove(e.clientX)}
+      onPointerUp={handlePointerUp}
+      onPointerLeave={handlePointerUp}
+      onTouchStart={(e) => handlePointerDown(e.touches[0].clientX)}
+      onTouchMove={(e) => handlePointerMove(e.touches[0].clientX)}
+      onTouchEnd={handlePointerUp}
+    >
+      {/* Center logo */}
+      <div className="w-28 h-28 md:w-32 md:h-32 p-2 sm:p-3 rounded-full bg-gradient-to-br from-[#0a1a4f]/100 to-[#3d2ca6]/90 flex items-center justify-center shadow-lg z-25">
+        <img
+          src={Logo}
+          alt="Center Logo"
+          className="w-full h-full object-cover rounded-full select-none"
+          draggable={false}
+        />
       </div>
 
-      {/* Modal Cards */}
+      {/* Outer Ring */}
+      <div className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none">
+        {renderRing(outerItems, outerAngle, outerRadius, 90, "outer")}
+      </div>
+
+      {/* Inner Ring */}
+      <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+        {renderRing(innerItems, innerAngle, innerRadius, 70, "inner")}
+      </div>
+
+      {/* Modal (same as before) */}
       <AnimatePresence>
         {selectedDivision !== null && (
-          <motion.div className="fixed inset-0 z-50 flex items-center justify-center p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setSelectedDivision(null)} />
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <div
+              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+              onClick={() => setSelectedDivision(null)}
+            />
             <motion.div
-              key="card-overlay"
               className="relative z-10 bg-gradient-to-br from-[#3d2ca6]/90 via-[#2b227a]/70 to-[#0a1a4f]/100 rounded-3xl shadow-xl overflow-hidden w-full max-w-sm"
               initial={{ opacity: 0, scale: 0.8, y: 40 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.8, y: 40 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              transition={{ duration: 0.3 }}
             >
-              <img src={menuItems[selectedDivision].cards[cardIndex]} alt={menuItems[selectedDivision].label} className="w-full h-48 sm:h-56 md:h-64 object-cover transition-all duration-700" />
-              <div className="p-4 sm:p-6 text-gray-200 text-xs sm:text-sm font-bold leading-relaxed">{menuItems[selectedDivision].desc}</div>
-
-              {/* Controls */}
-              <div className="flex justify-between items-center px-4 sm:px-6 pb-4 sm:pb-6 gap-4">
-                <button onClick={handlePrev} className="bg-white/80 p-2 sm:p-3 rounded-full shadow-lg hover:bg-opacity-100 transition duration-300 ease-in-out transform hover:scale-110 active:scale-95">
-                  <FaChevronLeft size={16} />
-                </button>
-                <button onClick={() => setSelectedDivision(null)} className="bg-red-600 text-white p-2 sm:p-3 rounded-full shadow-lg hover:bg-red-700 transition duration-300 ease-in-out transform hover:scale-110 active:scale-95">
-                  <FaTimes size={16} />
-                </button>
-                <button onClick={handleNext} className="bg-white/80 p-2 sm:p-3 rounded-full shadow-lg hover:bg-opacity-100 transition duration-300 ease-in-out transform hover:scale-110 active:scale-95">
-                  <FaChevronRight size={16} />
-                </button>
+              <img
+                src={menuItems[selectedDivision].cards[cardIndex]}
+                alt={menuItems[selectedDivision].label}
+                className="w-full h-56 object-cover"
+              />
+              <div className="p-4 sm:p-6 text-gray-200 text-xs sm:text-sm font-bold leading-relaxed">
+                {menuItems[selectedDivision].desc}
               </div>
 
-              {/* Pagination dots */}
-              <div className="flex justify-center pb-4">
-                {menuItems[selectedDivision].cards.map((_, idx) => (
-                  <div key={idx} className={`w-2 h-2 sm:w-3 sm:h-3 mx-1 rounded-full ${idx === cardIndex ? "bg-white" : "bg-gray-500"}`} />
-                ))}
+              <div className="flex justify-between items-center px-4 pb-4 gap-4">
+                <button
+                  onClick={handlePrev}
+                  className="bg-white/80 p-2 rounded-full hover:bg-opacity-100 hover:scale-110 transition"
+                >
+                  <FaChevronLeft size={16} />
+                </button>
+                <button
+                  onClick={() => setSelectedDivision(null)}
+                  className="bg-red-600 text-white p-2 rounded-full hover:bg-red-700 hover:scale-110 transition"
+                >
+                  <FaTimes size={16} />
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="bg-white/80 p-2 rounded-full hover:bg-opacity-100 hover:scale-110 transition"
+                >
+                  <FaChevronRight size={16} />
+                </button>
               </div>
             </motion.div>
           </motion.div>
