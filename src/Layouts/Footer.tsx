@@ -96,14 +96,16 @@ const Footer: React.FC = () => {
       {/* Media Partner Show */}
       <div className="max-w-4xl mx-auto px-6 text-center">
         <div className="mt-6">
-          <span className="inline-block text-4xl md:text-5xl px-6 py-2 mt-10 mb-5 font-black text-orange-400 [text-shadow:_2px_2px_0_rgb(255_255_2225),_4px_4px_0_rgb(234_88_12)]">
+          <span className="inline-block text-4xl md:text-5xl px-6 py-2 mt-10 mb-5 ml-auto font-black text-white [text-shadow:_2px_2px_0_rgb(0_0_0),_4px_4px_0_rgb(0_0_0),_0_2px_8px_rgb(0_0_0_/_60%)]">
             Media Partner
           </span>
         </div>
 
-        <div className="mt-6 flex flex-wrap justify-center items-center gap-8 px-4">
+  <div className="mt-6 grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 md:gap-2 xl:grid-cols-8 xl:gap-10 max-w-3xl mx-auto px-4 justify-items-center">
           {partnerLogos.map((src, idx) => (
-            <img key={idx} src={src} alt={`Media Partner ${idx + 1}`} className="h-16 md:h-20 object-contain" loading="lazy" />
+            <div key={idx} className="aspect-square w-20 md:w-24 flex items-center justify-center p-2">
+              <img src={src} alt={`Media Partner ${idx + 1}`} className="max-h-full max-w-full object-contain" loading="lazy" />
+            </div>
           ))}
         </div>
         <br />
