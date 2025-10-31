@@ -72,7 +72,7 @@ const Division: React.FC = () => {
   const lastX = useRef(0);
   const lastTime = useRef(0);
 
-  const friction = 0.96;
+  const friction = 0.93;
   const baseSpeedOuter = 0.3;
   const baseSpeedInner = -0.4;
 
@@ -197,6 +197,7 @@ const Division: React.FC = () => {
   }, []);
 
   const handlePointerDown = (x: number) => {
+    if ((window as any).touches?.length > 1) return;
     setIsDragging(true);
     dragStartX.current = x;
     lastX.current = x;
@@ -204,22 +205,24 @@ const Division: React.FC = () => {
   };
 
   const handlePointerMove = (x: number) => {
-    if (isDragging) {
-      const now = performance.now();
-      const deltaX = x - lastX.current;
-      const deltaT = now - lastTime.current;
+    if (!isDragging) return;
 
-      const v = deltaX / deltaT;
+    const now = performance.now();
+    const deltaX = x - lastX.current;
+    const deltaT = now - lastTime.current;
 
-      setOuterAngle((a) => (a + deltaX * 0.3) % 360);
-      setInnerAngle((a) => (a - deltaX * 0.3) % 360);
+    if (deltaT === 0) return;
 
-      setVelocityOuter(v * 20);
-      setVelocityInner(v * 20);
+    const v = deltaX / deltaT;
 
-      lastX.current = x;
-      lastTime.current = now;
-    }
+    setOuterAngle((a) => (a + deltaX * 0.3) % 360);
+    setInnerAngle((a) => (a - deltaX * 0.3) % 360);
+
+    setVelocityOuter(v * 20);
+    setVelocityInner(v * 20);
+
+    lastX.current = x;
+    lastTime.current = now;
   };
 
   const handlePointerUp = () => setIsDragging(false);
@@ -286,14 +289,25 @@ const Division: React.FC = () => {
 
   return (
     <div
-      className="flex items-center justify-center min-h-screen w-auto bg-gradient-to-br from-[#3d2ca6]/90 via-[#2b227a]/70 to-[#0a1a4f]/100 overflow-hidden relative select-none touch-pan-x"
-      onPointerDown={(e) => handlePointerDown(e.clientX)}
-      onPointerMove={(e) => handlePointerMove(e.clientX)}
-      onPointerUp={handlePointerUp}
-      onPointerLeave={handlePointerUp}
-      onTouchStart={(e) => handlePointerDown(e.touches[0].clientX)}
-      onTouchMove={(e) => handlePointerMove(e.touches[0].clientX)}
-      onTouchEnd={handlePointerUp}
+      className="flex items-center justify-center min-h-screen w-auto bg-gradient-to-br from-[#3d2ca6]/90 via-[#2b227a]/70 to-[#0a1a4f]/100 overflow-hidden relative select-none"
+      onPointerDown={(e) => {
+        const target = e.target as HTMLElement;
+
+        if (target.tagName === "BUTTON" || target.closest("button")) return;
+
+        e.preventDefault();
+        e.currentTarget.setPointerCapture(e.pointerId);
+        handlePointerDown(e.clientX);
+      }}
+      onPointerMove={(e) => {
+        if (e.buttons === 1) handlePointerMove(e.clientX);
+      }}
+      onPointerUp={(e) => {
+        e.preventDefault();
+        e.currentTarget.releasePointerCapture(e.pointerId);
+        handlePointerUp();
+      }}
+      onPointerCancel={handlePointerUp}
     >
       {/* Center logo */}
       <div className="w-28 h-28 md:w-32 md:h-32 p-2 sm:p-3 rounded-full bg-gradient-to-br from-[#0a1a4f]/100 to-[#3d2ca6]/90 flex items-center justify-center shadow-lg z-25">
