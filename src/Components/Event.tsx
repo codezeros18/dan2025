@@ -1,34 +1,35 @@
-import { useState } from "react"
-import {AnimatePresence } from "framer-motion"
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import { IoCloseOutline } from "react-icons/io5";
 // @ts-ignore
-import "swiper/css/pagination"
-import { motion } from "framer-motion"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Autoplay } from "swiper/modules"
+import "swiper/css/pagination";
+import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 // @ts-ignore
-import "swiper/css"
-import bg from "../assets/back2.webp"
-import logo from '../assets/logo6.webp'
+import "swiper/css";
+import bg from "../assets/back2.webp";
+import logo from "../assets/logo6.webp";
 
-import dgts1 from "../assets/dgtss1.webp"
-import dgts2 from "../assets/dgtss2.webp"
-import dgts3 from "../assets/dgtss3.webp"
-import dgts4 from "../assets/dgtss4.webp"
-import dgts5 from "../assets/dgtss5.webp"
+import dgts1 from "../assets/dgtss1.webp";
+import dgts2 from "../assets/dgtss2.webp";
+import dgts3 from "../assets/dgtss3.webp";
+import dgts4 from "../assets/dgtss4.webp";
+import dgts5 from "../assets/dgtss5.webp";
 
-import award2 from "../assets/award2.webp"
-import award3 from "../assets/award3.webp"
-import award4 from "../assets/award4.webp"
-import award5 from "../assets/award5.webp"
-import award6 from "../assets/award6.webp"
+import award2 from "../assets/award2.webp";
+import award3 from "../assets/award3.webp";
+import award4 from "../assets/award4.webp";
+import award5 from "../assets/award5.webp";
+import award6 from "../assets/award6.webp";
 
-import donor1 from "../assets/donor1.webp"
-import donor2 from "../assets/donor2.webp"
-import donor3 from "../assets/donor3.webp"
-import donor4 from "../assets/donor4.webp"
-import donor5 from "../assets/donor5.webp"
+import donor1 from "../assets/donor1.webp";
+import donor2 from "../assets/donor2.webp";
+import donor3 from "../assets/donor3.webp";
+import donor4 from "../assets/donor4.webp";
+import donor5 from "../assets/donor5.webp";
 
-const galleryImages = [dgts1, award2, donor1, dgts5, award6, award3, donor2, dgts1]
+const galleryImages = [dgts1, award2, donor1, dgts5, award6, award3, donor2, dgts1];
 
 const bigEvents = [
   {
@@ -45,33 +46,22 @@ const bigEvents = [
   },
   {
     id: "awarding",
-  title: "Awarding Night",
+    title: "Awarding Night",
     desc: "Rangkaian seleksi dan karantina yang berujung pada malam puncak pemilihan duta penerus. Momen ini menjadi ajang apresiasi bagi mereka yang siap membawa semangat perubahan dalam gerakan anti narkoba di lingkungan sekitar.",
     images: [award2, award3, award4, award5, award6],
   },
-]
-
+];
 
 const Event: React.FC = () => {
-  const [activeEvent, setActiveEvent] = useState(bigEvents[0]) // default DGTS
+  const [activeEvent, setActiveEvent] = useState(bigEvents[0]); // default DGTS
+  const [selectedImg, setSelectedImg] = useState(null);
+
   return (
     <section className="relative ">
-            <img
-  src={logo}
-  alt="Logo bg"
-  className="absolute top-10 left-5 w-20 opacity-20 rotate-12"
-/>
-<img
-  src={logo}
-  alt="Logo bg"
-  className="absolute top-80 right-10 w-20 opacity-20 rotate-22"
-/>
+      <img src={logo} alt="Logo bg" className="absolute top-10 left-5 w-20 opacity-20 rotate-12" />
+      <img src={logo} alt="Logo bg" className="absolute top-80 right-10 w-20 opacity-20 rotate-22" />
 
-<img
-  src={logo}
-  alt="Logo bg"
-  className="absolute top-[30%] left-10 w-30 opacity-20 rotate-42"
-/>
+      <img src={logo} alt="Logo bg" className="absolute top-[30%] left-10 w-30 opacity-20 rotate-42" />
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 py-12 px-6">
         {/* Left side - Event Tabs */}
@@ -83,9 +73,7 @@ const Event: React.FC = () => {
               whileTap={{ scale: 0.95 }}
               onClick={() => setActiveEvent(event)}
               className={`w-full text-left px-4 py-3 rounded-xl shadow-md font-semibold transition-all cursor-pointer ${
-                activeEvent.id === event.id
-                  ? "bg-gradient-to-r from-[#0a1a4f] via-[#1a2e7a] to-[#27459b] text-white scale-105"
-                  : "bg-white text-gray-700 hover:bg-gray-100"
+                activeEvent.id === event.id ? "bg-gradient-to-r from-[#0a1a4f] via-[#1a2e7a] to-[#27459b] text-white scale-105" : "bg-white text-gray-700 hover:bg-gray-100"
               }`}
             >
               {event.title}
@@ -96,39 +84,22 @@ const Event: React.FC = () => {
         {/* Right side - Event Content */}
         <div className="md:col-span-3">
           <AnimatePresence mode="wait">
-            <motion.div
-              key={activeEvent.id}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 50 }}
-              transition={{ duration: 0.5 }}
-              className="space-y-6"
-            >
+            <motion.div key={activeEvent.id} initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 50 }} transition={{ duration: 0.5 }} className="space-y-6">
               {/* Title */}
-              <h2 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#0a1a4f]/80 via-[#1a2e7a]/80 to-[#27459b]/80
-                         bg-clip-text text-transparent">
+              <h2
+                className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#0a1a4f]/80 via-[#1a2e7a]/80 to-[#27459b]/80
+                         bg-clip-text text-transparent"
+              >
                 {activeEvent.title}
               </h2>
               {/* Description */}
               <p className="text-gray-600">{activeEvent.desc}</p>
 
               {/* Swiper */}
-              <Swiper
-                modules={[Autoplay]}
-                spaceBetween={24}
-                slidesPerView={1}
-                autoplay={{ delay: 3000 }}
-                pagination={{ clickable: true }}
-                loop
-                className="rounded-2xl overflow-hidden shadow-lg"
-              >
+              <Swiper modules={[Autoplay]} spaceBetween={24} slidesPerView={1} autoplay={{ delay: 3000 }} pagination={{ clickable: true }} loop className="rounded-2xl overflow-hidden shadow-lg">
                 {activeEvent.images.map((img, i) => (
                   <SwiperSlide key={i}>
-                    <img
-                      src={img}
-                      alt={`${activeEvent.title} ${i}`}
-                      className="w-full h-[300px] md:h-[450px] object-cover"
-                    />
+                    <img src={img} alt={`${activeEvent.title} ${i}`} className="w-full h-[300px] md:h-[450px] object-cover" />
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -136,66 +107,83 @@ const Event: React.FC = () => {
           </AnimatePresence>
         </div>
       </div>
-{/* Events Highlight Section */}
-<section className="relative mt-4  md:mt-8 py-16">
-  {/* Full background */}
-  <img
-    src={bg} // ganti path ke file kamu
-    alt="Background"
-    className="absolute inset-0 w-full h-full object-cover"
-  />
-  <div className="absolute inset-0 bg-gradient-to-b 
+      {/* Events Highlight Section */}
+      <section className="relative mt-4  md:mt-8 py-16">
+        {/* Full background */}
+        <img
+          src={bg} // ganti path ke file kamu
+          alt="Background"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-b 
     from-[#0a0a2e]/95 
     via-[#1b174d]/85 
     to-[#2d2470]/90"
-  ></div>
+        ></div>
 
-  {/* Content (relative supaya di atas bg) */}
-  <div className="relative z-10">
-    {/* Description */}
-    <div className="max-w-4xl mx-auto py-12 px-6 text-center text-white">
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-2xl md:text-3xl font-bold mb-4"
-      >
-        A Journey of Togetherness
-      </motion.h2>
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-gray-200 leading-relaxed"
-      >
-        From social movements to awarding nights, our events are filled with
-        energy, passion, and unforgettable memories. Here’s a glimpse of the
-        moments that brought us all together.
-      </motion.p>
-    </div>
+        {/* Content (relative supaya di atas bg) */}
+        <div className="relative z-10">
+          {/* Description */}
+          <div className="max-w-4xl mx-auto py-12 px-6 text-center text-white">
+            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-2xl md:text-3xl font-bold mb-4">
+              A Journey of Togetherness
+            </motion.h2>
+            <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-gray-200 leading-relaxed">
+              From social movements to awarding nights, our events are filled with energy, passion, and unforgettable memories. Here’s a glimpse of the moments that brought us all together.
+            </motion.p>
+          </div>
 
-    {/* Gallery Grid */}
-    <div className="max-w-6xl mx-auto px-6 pb-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {galleryImages.map((img, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.4 }}
-          className="rounded-xl overflow-hidden shadow-md"
-        >
-          <img
-            src={img}
-            alt={`Gallery ${i}`}
-            className="w-full h-36 md:h-56 lg:h-64 object-cover"
-          />
-        </motion.div>
-      ))}
-    </div>
-  </div>
-</section>
+          {/* Gallery Grid */}
+          <div className="max-w-6xl mx-auto px-6 pb-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {galleryImages.map((img, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.4 }}
+                className="rounded-xl overflow-hidden shadow-md cursor-pointer"
+                onClick={() => setSelectedImg(img)}
+              >
+                <img src={img} alt={`Gallery ${i}`} className="w-full h-36 md:h-56 lg:h-64 object-cover" />
+              </motion.div>
+            ))}
+            {/* Modal Foto */}
+            <AnimatePresence>
+              {selectedImg && (
+                <motion.div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedImg(null)}>
+                  {/* Image Container */}
+                  <div className="relative">
+                    <motion.img
+                      src={selectedImg}
+                      alt="Selected"
+                      className="max-w-full max-h-[45vh] lg:max-h-[65vh] rounded-2xl shadow-lg object-contain"
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.8, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    />
 
+                    {/* Tombol Close */}
+                    <motion.button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedImg(null);
+                      }}
+                      className="absolute top-3 right-3 text-white bg-black/40 hover:bg-black/60 rounded-full w-9 h-9 flex items-center justify-center text-2xl cursor-pointer z-[100]"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <IoCloseOutline />
+                    </motion.button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+      </section>
 
       {/* Highlight Carousel */}
       {/* <div className="py-12">
@@ -227,7 +215,7 @@ const Event: React.FC = () => {
         </Swiper>
       </div> */}
     </section>
-  )
-}
+  );
+};
 
-export default Event
+export default Event;
