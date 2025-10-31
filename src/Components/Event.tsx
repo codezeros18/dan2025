@@ -152,19 +152,31 @@ const Event: React.FC = () => {
             <AnimatePresence>
               {selectedImg && (
                 <motion.div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedImg(null)}>
-                  <motion.img
-                    src={selectedImg}
-                    alt="Selected"
-                    className="max-w-full max-h-[65vh] rounded-2xl shadow-lg object-contain"
-                    initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    exit={{ scale: 0.8, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  {/* Tombol Close */}
-                  <motion.button onClick={() => setSelectedImg(null)} className="absolute top-6 right-6 text-white bg-black/40 hover:bg-black/60 rounded-full px-3 py-1 text-lg cursor-pointer" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-                    ✕
-                  </motion.button>
+                  {/* Image Container */}
+                  <div className="relative">
+                    <motion.img
+                      src={selectedImg}
+                      alt="Selected"
+                      className="max-w-full max-h-[45vh] lg:max-h-[65vh] rounded-2xl shadow-lg object-contain"
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      exit={{ scale: 0.8, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                    />
+
+                    {/* Tombol Close */}
+                    <motion.button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedImg(null);
+                      }}
+                      className="absolute top-3 right-3 text-white bg-black/40 hover:bg-black/60 rounded-full w-9 h-9 flex items-center justify-center text-xl cursor-pointer z-[100]"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      ✕
+                    </motion.button>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
