@@ -93,7 +93,7 @@ const Footer: React.FC = () => {
       </div>
 
 
-      {/* Media Partner Show */}
+      {/* Media Partner */}
       <div className="max-w-4xl mx-auto px-6 text-center">
         <div className="mt-6">
           <span className="inline-block text-4xl md:text-5xl px-6 py-2 mt-10 mb-5 ml-auto font-black text-white [text-shadow:_2px_2px_0_rgb(0_0_0),_4px_4px_0_rgb(0_0_0),_0_2px_8px_rgb(0_0_0_/_60%)]">
