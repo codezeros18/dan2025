@@ -72,9 +72,9 @@ const Division: React.FC = () => {
   const lastX = useRef(0);
   const lastTime = useRef(0);
 
-  const friction = 0.93;
-  const baseSpeedOuter = 0.3;
-  const baseSpeedInner = -0.4;
+  const friction = 0.95;
+  const baseSpeedOuter = 0.23;
+  const baseSpeedInner = -0.33;
 
   const outerRadius = isMobile ? 250 : 350;
   const innerRadius = isMobile ? 150 : 220;
@@ -170,22 +170,28 @@ const Division: React.FC = () => {
   );
 
   const midIndex = Math.ceil(menuItems.length / 2);
-  const outerItems = menuItems.slice(0, midIndex);
-  const innerItems = menuItems.slice(midIndex);
+  const outerItems = menuItems.slice(0, midIndex + 2);
+  const innerItems = menuItems.slice(midIndex + 2);
 
   useEffect(() => {
     let frame: number;
-    const animate = () => {
+    let lastTime = performance.now();
+
+    const animate = (time: number) => {
+      const delta = (time - lastTime) / 16.67;
+      lastTime = time;
+
       if (!isDragging) {
         setVelocityOuter((v) => (Math.abs(v) < 0.01 ? 0 : v * friction));
         setVelocityInner((v) => (Math.abs(v) < 0.01 ? 0 : v * friction));
       }
 
-      setOuterAngle((a) => (a + baseSpeedOuter + velocityOuter) % 360);
-      setInnerAngle((a) => (a + baseSpeedInner + velocityInner) % 360);
+      setOuterAngle((a) => (a + (baseSpeedOuter + velocityOuter) * delta) % 360);
+      setInnerAngle((a) => (a + (baseSpeedInner + velocityInner) * delta) % 360);
 
       frame = requestAnimationFrame(animate);
     };
+
     frame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(frame);
   }, [velocityOuter, velocityInner, isDragging]);
@@ -215,11 +221,14 @@ const Division: React.FC = () => {
 
     const v = deltaX / deltaT;
 
-    setOuterAngle((a) => (a + deltaX * 0.3) % 360);
-    setInnerAngle((a) => (a - deltaX * 0.3) % 360);
+    const dragFactorOuter = 0.15;
+    const dragFactorInner = 0.1;
 
-    setVelocityOuter(v * 20);
-    setVelocityInner(v * 20);
+    setOuterAngle((a) => (a + deltaX * dragFactorOuter) % 360);
+    setInnerAngle((a) => (a - deltaX * dragFactorInner) % 360);
+
+    setVelocityOuter(v * 8);
+    setVelocityInner(-v * 6);
 
     lastX.current = x;
     lastTime.current = now;
