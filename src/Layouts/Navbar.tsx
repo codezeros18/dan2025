@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Lottie from 'lottie-react';
-import img1 from '../assets/logo6.webp';
+import img1 from '../assets/logo/logo6.webp';
 import menuAnimation from '../assets/menuV2.json';
 
 const Navbar: React.FC = () => {

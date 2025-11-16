@@ -1,11 +1,11 @@
 
-import img1 from '../assets/donor5.webp'
-import img2 from '../assets/dgtss5.webp'
-import img3 from '../assets/donor7.webp'
-import img4 from '../assets/award6.webp'
-import img5 from '../assets/dgtss3.webp'
+import img1 from '../assets/donor/donor5.webp'
+import img2 from '../assets/dgts/dgtss5.webp'
+import img3 from '../assets/donor/donor7.webp'
+import img4 from '../assets/award/award6.webp'
+import img5 from '../assets/dgts/dgtss3.webp'
 
-import logo from '../assets/logo6.webp'
+import logo from '../assets/logo/logo6.webp'
 
 import { Swiper, SwiperSlide } from "swiper/react"
 import { EffectCoverflow, Autoplay } from "swiper/modules"

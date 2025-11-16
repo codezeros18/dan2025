@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import dunar1 from '../assets/award2.webp';
-import dunar2 from '../assets/dgts1.webp';
-import dunar3 from '../assets/donor1.webp';
+import dunar1 from '../assets/award/award2.webp';
+import dunar2 from '../assets/dgts/dgts1.webp';
+import dunar3 from '../assets/donor/donor1.webp';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 // @ts-ignore

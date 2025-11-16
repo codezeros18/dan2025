@@ -8,26 +8,26 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 // @ts-ignore
 import "swiper/css";
-import bg from "../assets/back2.webp";
-import logo from "../assets/logo6.webp";
+import bg from "../assets/background/back2.webp";
+import logo from "../assets/logo/logo6.webp";
 
-import dgts1 from "../assets/dgtss1.webp";
-import dgts2 from "../assets/dgtss2.webp";
-import dgts3 from "../assets/dgtss3.webp";
-import dgts4 from "../assets/dgtss4.webp";
-import dgts5 from "../assets/dgtss5.webp";
+import dgts1 from "../assets/dgts/dgtss1.webp";
+import dgts2 from "../assets/dgts/dgtss2.webp";
+import dgts3 from "../assets/dgts/dgtss3.webp";
+import dgts4 from "../assets/dgts/dgtss4.webp";
+import dgts5 from "../assets/dgts/dgtss5.webp";
 
-import award2 from "../assets/award2.webp";
-import award3 from "../assets/award3.webp";
-import award4 from "../assets/award4.webp";
-import award5 from "../assets/award5.webp";
-import award6 from "../assets/award6.webp";
+import award2 from "../assets/award/award2.webp";
+import award3 from "../assets/award/award3.webp";
+import award4 from "../assets/award/award4.webp";
+import award5 from "../assets/award/award5.webp";
+import award6 from "../assets/award/award6.webp";
 
-import donor1 from "../assets/donor1.webp";
-import donor2 from "../assets/donor2.webp";
-import donor3 from "../assets/donor3.webp";
-import donor4 from "../assets/donor4.webp";
-import donor5 from "../assets/donor5.webp";
+import donor1 from "../assets/donor/donor1.webp";
+import donor2 from "../assets/donor/donor2.webp";
+import donor3 from "../assets/donor/donor3.webp";
+import donor4 from "../assets/donor/donor4.webp";
+import donor5 from "../assets/donor/donor5.webp";
 
 const galleryImages = [dgts1, award2, donor1, dgts5, award6, award3, donor2, dgts1];
 

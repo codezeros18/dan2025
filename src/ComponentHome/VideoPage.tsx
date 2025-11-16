@@ -1,4 +1,4 @@
-import bg from '../assets/backgroundaward.jpg'
+import bg from '../assets/background/backgroundaward.webp'
 import React, { useRef } from "react";
 import vid from '../assets/vid1.mp4'
 

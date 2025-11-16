@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from '../assets/logo.webp';
-import logo1 from '../assets/logo3.png';
+import logo from '../assets/logo/logo.webp';
+import logo1 from '../assets/logo/logo3.webp';
 import { FaInstagram,FaEnvelope } from "react-icons/fa";
 
 import MP1 from '../assets/mediapartner/MP1.webp'

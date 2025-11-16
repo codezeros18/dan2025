@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Vid from '../assets/vid1.mp4';
-import img from '../assets/logo6.webp';
+import img from '../assets/logo/logo6.webp';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 // @ts-ignore
