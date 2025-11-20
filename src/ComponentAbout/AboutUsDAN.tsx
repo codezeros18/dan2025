@@ -1,184 +1,156 @@
+// src/ComponentAbout/AboutUsDAN.tsx
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-import img1 from '../assets/donor5.webp'
-import img2 from '../assets/dgtss5.webp'
-import img3 from '../assets/donor7.webp'
-import img4 from '../assets/award6.webp'
-import img5 from '../assets/dgtss3.webp'
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, Autoplay } from "swiper/modules";
 
-import logo from '../assets/logo6.webp'
-
-import { Swiper, SwiperSlide } from "swiper/react"
-import { EffectCoverflow, Autoplay } from "swiper/modules"
 // @ts-ignore
-import "swiper/css"
+import "swiper/css";
 // @ts-ignore
-import "swiper/css/effect-coverflow"
-const images = [img1, img2, img3, img4, img5]
+import "swiper/css/effect-coverflow";
 
-import React, { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import img1 from "../assets/donor5.webp";
+import img2 from "../assets/dgtss5.webp";
+import img3 from "../assets/donor7.webp";
+import img4 from "../assets/award6.webp";
+import img5 from "../assets/dgtss3.webp";
+import logo from "../assets/logo6.webp";
+
+const images = [img1, img2, img3, img4, img5];
 
 const AboutUsDAN: React.FC = () => {
-  const [active, setActive] = useState<string>("Visi") // ✅ default langsung Visi
+  const [active, setActive] = useState("Visi");
+
   const content: Record<string, string | string[]> = {
-    Visi: "Menjadikan generasi yang dapat membentuk lingkungan internal maupun eksternal Universitas Multimedia Nusantara yang bebas dari penyalahgunaan narkoba, kompeten, dan mampu bersaing dengan cara yang kreatif dan inovatif.",
+    Visi:
+      "Menjadikan generasi yang dapat membentuk lingkungan internal maupun eksternal Universitas Multimedia Nusantara yang bebas dari penyalahgunaan narkoba, kompeten, dan mampu bersaing dengan cara yang kreatif dan inovatif.",
     Misi: [
-    "Mengadakan sosialisasi langsung pada pelajar dan masyarakat tentang bahaya narkoba.",
-    "Menjadi duta yang kompeten sehingga dapat memberikan contoh yang baik di kalangan mahasiswa dan masyarakat.",
-    "Memaksimalkan penggunaan media sosial sebagai sarana yang memberikan dampak bagi masyarakat.",
-    "Menyelenggarakan kegiatan yang dapat membangun hubungan antar organisasi internal dan eksternal kampus."
-  ],
-    Tagline: "Stay Sharp, Stay Strong, Stay Clean!"
-  }
+      "Mengadakan sosialisasi langsung pada pelajar dan masyarakat tentang bahaya narkoba.",
+      "Menjadi duta yang kompeten sehingga dapat memberikan contoh yang baik di kalangan mahasiswa dan masyarakat.",
+      "Memaksimalkan penggunaan media sosial sebagai sarana yang memberikan dampak bagi masyarakat.",
+      "Menyelenggarakan kegiatan yang dapat membangun hubungan antar organisasi internal dan eksternal kampus.",
+    ],
+    Tagline: "Stay Sharp, Stay Strong, Stay Clean!",
+  };
 
   return (
-    <>
-      <section className="relative py-16 px-6 md:px-12 lg:px-20 bg-white">
-        {/* Background decorative logos */}
-<img
-  src={logo}
-  alt="Logo bg"
-  className="absolute top-10 left-5 w-20 opacity-20 rotate-12"
-/>
-<img
-  src={logo}
-  alt="Logo bg"
-  className="absolute top-1/2 right-20 w-24 opacity-15 -rotate-45"
-/>
-<img
-  src={logo}
-  alt="Logo bg"
-  className="absolute bottom-20 left-1/4 w-16 opacity-10 rotate-90"
-/>
-<img
-  src={logo}
-  alt="Logo bg"
-  className="absolute bottom-10 right-10 w-28 opacity-10 -rotate-30"
-/>
+    <section className="relative py-24 px-6 md:px-12 lg:px-20">
 
-{/* tambahan baru */}
-<img
-  src={logo}
-  alt="Logo bg"
-  className="absolute top-16 right-8 w-20 opacity-15 rotate-6"
-/>
-<img
-  src={logo}
-  alt="Logo bg"
-  className="absolute top-1/3 left-10 w-24 opacity-10 -rotate-12"
-/>
+      {/* Watermarks */}
+      <img src={logo} className="absolute top-10 left-8 w-40 opacity-[0.03] rotate-12 pointer-events-none" />
+      <img src={logo} className="absolute top-1/2 right-8 w-52 opacity-[0.03] -rotate-6 pointer-events-none" />
+      <img src={logo} className="absolute bottom-10 left-1/4 w-48 opacity-[0.03] rotate-45 pointer-events-none" />
 
+      <div className="max-w-7xl mx-auto relative z-10">
 
-        <div className="max-w-6xl mx-auto w-full my-12 md:my-20">
-          {/* Title 1 */}
-          <h2 className="text-2xl md:text-3xl font-bold mb-12 text-center
-                         bg-gradient-to-r from-[#0a1a4f]/80 via-[#1a2e7a]/80 to-[#27459b]/80
-                         bg-clip-text text-transparent">
-            WHAT IS DAN 2025?
-          </h2>
+        {/* Header */}
+        <h2 className="text-4xl md:text-5xl font-extrabold text-center
+                       bg-gradient-to-r from-cyan-300 via-blue-400 to-indigo-300 bg-clip-text text-transparent">
+          WHAT IS DAN 2025?
+        </h2>
+        <p className="text-white/80 text-center max-w-3xl mx-auto mt-4">
+          Mengenal lebih dekat misi dan perjalanan gerakan Duta Anti Narkoba UMN.
+        </p>
 
-          {/* Grid section 1 */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center mb-20">
-            {/* Left image */}
-            <div className="col-span-1 md:col-span-6 flex justify-center">
-  <Swiper
-    modules={[EffectCoverflow, Autoplay]}
-    effect="coverflow"
-    grabCursor={true}
-    centeredSlides={true}
-    slidesPerView={"auto"}
-    autoplay={{ delay: 3000 }}
-    coverflowEffect={{
-      rotate: 0,
-      stretch: 0,
-      depth: 100,
-      modifier: 2,
-      slideShadows: false,
-    }}
-    className="w-full max-w-lg h-auto md:h-96"
-  >
-    {images.map((src, i) => (
-      <SwiperSlide
-  key={i}
-  className="w-64 h-80 flex justify-center items-center overflow-hidden"
->
-  <img
-    src={src}
-    alt={`slide-${i}`}
-    className="w-full h-full object-cover rounded-2xl shadow-lg"
-  />
-</SwiperSlide>
+        {/* Content Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 items-center mt-16">
 
-    ))}
-  </Swiper>
-</div>
+          {/* Swiper */}
+          <div className="md:col-span-6 flex justify-center">
+            <Swiper
+              modules={[EffectCoverflow, Autoplay]}
+              effect="coverflow"
+              centeredSlides
+              grabCursor
+              autoplay={{ delay: 3000 }}
+              slidesPerView="auto"
+              loop
+              speed={700}
+              coverflowEffect={{
+                rotate: 0,
+                stretch: 0,
+                depth: 140,
+                modifier: 2.5,
+                slideShadows: false,
+              }}
+              className="w-full max-w-lg h-[420px]"
+            >
+              {images.map((src, i) => (
+                <SwiperSlide
+                  key={i}
+                  className="w-[260px] sm:w-[300px] md:w-[340px] h-full px-2"
+                >
+                  <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-[0_30px_80px_rgba(5,10,30,0.6)]">
+                    <img src={src} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
 
-            {/* Right text */}
-            <div className="col-span-1 md:col-span-6 flex flex-col items-center md:items-start">
-              <p className="leading-relaxed mb-8
-                            bg-gradient-to-r from-[#0a1a4f]/60 via-[#1a2e7a]/60 to-[#27459b]/60
-                            bg-clip-text text-transparent">
-                Duta Anti Narkoba (DAN) UMN merupakan LSO (Lembaga Semi Otonom) yang menyuarakan gerakan anti narkoba baik secara
+          {/* Text */}
+          <div className="md:col-span-6 text-white/90 text-lg md:text-xl leading-relaxed">
+            Duta Anti Narkoba (DAN) UMN merupakan LSO (Lembaga Semi Otonom) yang menyuarakan gerakan anti narkoba baik secara
                 internal maupun eksternal, sesuai dengan esensi kampus yang menolak segala bentuk penyalahgunaan narkoba. Tagline
-                “Stay Sharp, Stay Strong, Stay Clean!” ingin membawakan pesan bahayanya penyalahgunaan narkoba kepada semua kalangan.
-              </p>
-            </div>
+                “Stay Sharp, Stay Strong, Stay Clean!” ingin membawakan pesan bahayanya penyalahgunaan narkoba kepada semua kalangan.{" "}
+            <span className="text-cyan-300 font-semibold">
+              “Stay Sharp, Stay Strong, Stay Clean!”
+            </span>
           </div>
         </div>
-        <div className="max-w-6xl mx-auto w-full my-16 md:my-24">
-      {/* Grid button */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center text-center">
-        {Object.keys(content).map((key) => (
-          <motion.button
-            key={key}
-            whileHover={{ scale: 1.08 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setActive(active === key ? key : key)} // tidak toggle, biar selalu ada isi
-            className={`py-6 px-8 rounded-2xl shadow-lg font-bold text-lg md:text-xl transition-all cursor-pointer
-              ${active === key 
-                ? "bg-gradient-to-r from-[#0a1a4f] via-[#1a2e7a] to-[#27459b] text-white scale-105" 
-                : "bg-gray-100 text-gray-700 hover:bg-gray-200"}`}
-          >
-            {key}
-          </motion.button>
-        ))}
-      </div>
 
-      {/* Content box with animation */}
-      <div className="mt-12 text-center">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            initial={{ opacity: 0, y: 40, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 40, scale: 0.95 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="flex justify-center"
-          >
+        {/* Tabs */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20">
+          {Object.keys(content).map((key) => (
+            <motion.button
+              key={key}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => setActive(key)}
+              className={`py-5 px-6 rounded-2xl font-semibold text-lg transition-all
+                ${
+                  active === key
+                    ? "bg-gradient-to-r from-[#0F3A66] via-[#174F91] to-[#1C61B4] text-white shadow-[0_12px_40px_rgba(10,35,90,0.45)] scale-105"
+                    : "bg-white/10 text-white/80 border border-white/10 backdrop-blur-sm hover:bg-white/20"
+                }`}
+            >
+              {key}
+            </motion.button>
+          ))}
+        </div>
+
+        {/* Tab content */}
+        <div className="max-w-4xl mx-auto mt-10">
+          <AnimatePresence mode="wait">
             <motion.div
-              layout
-              className="p-8 md:p-12 rounded-3xl shadow-2xl bg-white border border-gray-200
-                          max-w-3xl w-full min-h-[220px] flex items-center justify-center whitespace-pre-line"
+              key={active}
+              initial={{ opacity: 0, y: 20, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.98 }}
+              transition={{ duration: 0.38 }}
+              className="bg-white/10 backdrop-blur-xl border border-white/10 
+                         rounded-3xl p-10 shadow-[0_20px_80px_rgba(5,10,30,0.6)]
+                         text-white/90 min-h-[220px]"
             >
               {Array.isArray(content[active]) ? (
-  <ul className="list-decimal list-inside space-y-3 text-gray-800 text-lg md:text-xl font-medium">
-    {(content[active] as string[]).map((item, i) => (
-      <li key={i}>{item}</li>
-    ))}
-  </ul>
+                <ul className="list-disc list-inside space-y-3 text-lg">
+                  {content[active].map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
               ) : (
-                <p className="text-gray-800 leading-relaxed text-lg md:text-xl font-medium whitespace-pre-line">
+                <p className="text-lg leading-relaxed">
                   {content[active] as string}
                 </p>
               )}
             </motion.div>
-          </motion.div>
-        </AnimatePresence>
+          </AnimatePresence>
+        </div>
       </div>
-    </div>
-      </section>
-    </>
-  )
-}
+    </section>
+  );
+};
 
-export default AboutUsDAN
+export default AboutUsDAN;

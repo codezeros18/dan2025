@@ -1,16 +1,18 @@
-import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import React, { useMemo, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { IoCloseOutline } from "react-icons/io5";
-// @ts-ignore
-import "swiper/css/pagination";
-import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
+import TicketModal from "../Components/TicketModal";
+
 // @ts-ignore
 import "swiper/css";
-import bg from "../assets/back2.webp";
+// @ts-ignore
+import "swiper/css/pagination";
+
 import logo from "../assets/logo6.webp";
 
+// gallery & event images
 import dgts1 from "../assets/dgtss1.webp";
 import dgts2 from "../assets/dgtss2.webp";
 import dgts3 from "../assets/dgtss3.webp";
@@ -29,193 +31,313 @@ import donor3 from "../assets/donor3.webp";
 import donor4 from "../assets/donor4.webp";
 import donor5 from "../assets/donor5.webp";
 
-const galleryImages = [dgts1, award2, donor1, dgts5, award6, award3, donor2, dgts1];
+const galleryImages = [
+  dgts1,
+  award2,
+  donor1,
+  dgts5,
+  award6,
+  award3,
+  donor2,
+  dgts1,
+];
 
 const bigEvents = [
   {
     id: "dgts",
+    tag: "DGTS",
     title: "Duta Anti Narkoba Go To School",
-    desc: "Program edukatif yang berfokus pada penyuluhan di sekolah-sekolah. Melalui sesi interaktif, kegiatan ini mengajak pelajar untuk lebih memahami bahaya narkoba serta pentingnya menjaga kesehatan fisik dan mental dalam kehidupan sehari-hari.",
+    desc:
+      "Program edukatif berfokus pada penyuluhan di sekolah. Interaktif dan engaging — mengajak pelajar memahami bahaya narkoba melalui campaign kreatif.",
     images: [dgts1, dgts2, dgts3, dgts4, dgts5],
   },
   {
     id: "anw",
+    tag: "ANW",
     title: "Anti Narkoba Week",
-    desc: "Serangkaian kegiatan inspiratif yang meliputi kunjungan ke panti asuhan, penggalangan donasi, dan donor darah. Semua ini dilakukan untuk menumbuhkan kepedulian sosial serta meningkatkan kesadaran akan pentingnya menjaga kesehatan, khususnya di kalangan generasi muda.",
+    desc:
+      "Serangkaian kegiatan sosial seperti donor darah, penggalangan donasi, kunjungan panti, dan workshop yang melibatkan komunitas.",
     images: [donor1, donor2, donor3, donor4, donor5],
   },
   {
     id: "awarding",
+    tag: "AWARDING",
     title: "Awarding Night",
-    desc: "Rangkaian seleksi dan karantina yang berujung pada malam puncak pemilihan duta penerus. Momen ini menjadi ajang apresiasi bagi mereka yang siap membawa semangat perubahan dalam gerakan anti narkoba di lingkungan sekitar.",
+    desc:
+      "Malam puncak apresiasi bagi para duta. Ceremonial, performances, awarding, dan momentum tak terlupakan.",
     images: [award2, award3, award4, award5, award6],
   },
 ];
 
-const Event: React.FC = () => {
-  const [activeEvent, setActiveEvent] = useState(bigEvents[0]); // default DGTS
-  const [selectedImg, setSelectedImg] = useState(null);
+const filters = ["ALL", "DGTS", "ANW", "AWARDING"] as const;
+type Filter = typeof filters[number];
+
+const chipVariants = {
+  idle: { scale: 1, opacity: 0.9 },
+  hover: { scale: 1.03 },
+  active: { scale: 1.05 },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 10 },
+  show: (i = 0) => ({ opacity: 1, y: 0, transition: { delay: i * 0.06 } }),
+};
+
+const EventPremium: React.FC = () => {
+  const [activeEventId, setActiveEventId] = useState<string>(bigEvents[0].id);
+  const [filter, setFilter] = useState<Filter>("ALL");
+  const [selectedImg, setSelectedImg] = useState<string | null>(null);
+  const [showTicketModal, setShowTicketModal] = useState(false);
+
+  const filteredEvents = useMemo(() => {
+    if (filter === "ALL") return bigEvents;
+    return bigEvents.filter((e) => e.tag === filter);
+  }, [filter]);
+
+  const activeEvent = useMemo(
+    () => bigEvents.find((e) => e.id === activeEventId)!,
+    [activeEventId]
+  );
 
   return (
-    <section className="relative ">
-      <img src={logo} alt="Logo bg" className="absolute top-10 left-5 w-20 opacity-20 rotate-12" />
-      <img src={logo} alt="Logo bg" className="absolute top-80 right-10 w-20 opacity-20 rotate-22" />
-
-      <img src={logo} alt="Logo bg" className="absolute top-[30%] left-10 w-30 opacity-20 rotate-42" />
-
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 py-12 px-6">
-        {/* Left side - Event Tabs */}
-        <div className="flex flex-col items-center justify-center gap-4 md:col-span-1 h-full">
-          {bigEvents.map((event) => (
-            <motion.button
-              key={event.id}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setActiveEvent(event)}
-              className={`w-full text-left px-4 py-3 rounded-xl shadow-md font-semibold transition-all cursor-pointer ${
-                activeEvent.id === event.id ? "bg-gradient-to-r from-[#0a1a4f] via-[#1a2e7a] to-[#27459b] text-white scale-105" : "bg-white text-gray-700 hover:bg-gray-100"
-              }`}
-            >
-              {event.title}
-            </motion.button>
-          ))}
-        </div>
-
-        {/* Right side - Event Content */}
-        <div className="md:col-span-3">
-          <AnimatePresence mode="wait">
-            <motion.div key={activeEvent.id} initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 50 }} transition={{ duration: 0.5 }} className="space-y-6">
-              {/* Title */}
-              <h2
-                className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#0a1a4f]/80 via-[#1a2e7a]/80 to-[#27459b]/80
-                         bg-clip-text text-transparent"
-              >
-                {activeEvent.title}
-              </h2>
-              {/* Description */}
-              <p className="text-gray-600">{activeEvent.desc}</p>
-
-              {/* Swiper */}
-              <Swiper modules={[Autoplay]} spaceBetween={24} slidesPerView={1} autoplay={{ delay: 3000 }} pagination={{ clickable: true }} loop className="rounded-2xl overflow-hidden shadow-lg">
-                {activeEvent.images.map((img, i) => (
-                  <SwiperSlide key={i}>
-                    <img src={img} alt={`${activeEvent.title} ${i}`} className="w-full h-[300px] md:h-[450px] object-cover" />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+    <section
+      className="
+      relative overflow-x-hidden py-16 md:py-24 px-6 md:px-12 lg:px-20
+      text-white
+    "
+    >
+      {/* ===================== THEME A BACKGROUND ===================== */}
+      <div className="absolute inset-0 -z-50 pointer-events-none select-none">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#050B22] via-[#0C1A40] to-[#15397A]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.06),rgba(0,0,0,0.88))]" />
+        <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.png')] bg-repeat" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(0,0,0,0.55),transparent_75%)]" />
       </div>
-      {/* Events Highlight Section */}
-      <section className="relative mt-4  md:mt-8 py-16">
-        {/* Full background */}
-        <img
-          src={bg} // ganti path ke file kamu
-          alt="Background"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div
-          className="absolute inset-0 bg-gradient-to-b 
-    from-[#0a0a2e]/95 
-    via-[#1b174d]/85 
-    to-[#2d2470]/90"
-        ></div>
 
-        {/* Content (relative supaya di atas bg) */}
-        <div className="relative z-10">
-          {/* Description */}
-          <div className="max-w-4xl mx-auto py-12 px-6 text-center text-white">
-            <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-2xl md:text-3xl font-bold mb-4">
-              A Journey of Togetherness
-            </motion.h2>
-            <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-gray-200 leading-relaxed">
-              From social movements to awarding nights, our events are filled with energy, passion, and unforgettable memories. Here’s a glimpse of the moments that brought us all together.
-            </motion.p>
-          </div>
+      {/* ===================== WATERMARKS ===================== */}
+      <img src={logo} className="absolute top-10 left-6 w-24 opacity-[0.04]" />
+      <img src={logo} className="absolute top-1/2 right-10 w-32 opacity-[0.04]" />
+      <img src={logo} className="absolute bottom-16 left-16 w-40 opacity-[0.04]" />
 
-          {/* Gallery Grid */}
-          <div className="max-w-6xl mx-auto px-6 pb-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {galleryImages.map((img, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.4 }}
-                className="rounded-xl overflow-hidden shadow-md cursor-pointer"
-                onClick={() => setSelectedImg(img)}
-              >
-                <img src={img} alt={`Gallery ${i}`} className="w-full h-36 md:h-56 lg:h-64 object-cover" />
-              </motion.div>
-            ))}
-            {/* Modal Foto */}
-            <AnimatePresence>
-              {selectedImg && (
-                <motion.div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setSelectedImg(null)}>
-                  {/* Image Container */}
-                  <div className="relative">
-                    <motion.img
-                      src={selectedImg}
-                      alt="Selected"
-                      className="max-w-full max-h-[45vh] lg:max-h-[65vh] rounded-2xl shadow-lg object-contain"
-                      initial={{ scale: 0.8, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      exit={{ scale: 0.8, opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    />
-
-                    {/* Tombol Close */}
-                    <motion.button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectedImg(null);
-                      }}
-                      className="absolute top-3 right-3 text-white bg-black/40 hover:bg-black/60 rounded-full w-9 h-9 flex items-center justify-center text-2xl cursor-pointer z-[100]"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <IoCloseOutline />
-                    </motion.button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
-      </section>
-
-      {/* Highlight Carousel */}
-      {/* <div className="py-12">
-        <h2 className="text-center text-2xl md:text-3xl font-bold mb-8">
-          Event Highlights
-        </h2>
+      {/* ===================== HERO SLIDER ===================== */}
+      <div className="max-w-7xl mx-auto mb-14">
         <Swiper
-          modules={[Autoplay]}
-          spaceBetween={24}
-          slidesPerView={1}
-          autoplay={{ delay: 3000 }}
+          modules={[Autoplay, Pagination]}
+          autoplay={{ delay: 3500 }}
           pagination={{ clickable: true }}
           loop
-          className="max-w-5xl mx-auto"
+          slidesPerView={1}
+          className="rounded-2xl overflow-hidden shadow-[0_30px_120px_rgba(5,10,30,0.55)]"
         >
-          {galleryImages.map((img, i) => (
-            <SwiperSlide key={i}>
-              <motion.div
-                className="rounded-2xl overflow-hidden shadow-lg"
-              >
-                <img
-                  src={img}
-                  alt={`Highlight ${i}`}
-                  className="w-full h-[300px] md:h-[450px] object-cover"
-                />
-              </motion.div>
+          {bigEvents.map((ev) => (
+            <SwiperSlide key={ev.id}>
+              <div className="relative h-[340px] md:h-[420px] lg:h-[520px]">
+                <img src={ev.images[0]} className="absolute inset-0 w-full h-full object-cover" />
+
+                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-[#07183a]/70" />
+
+                <div className="absolute left-6 md:left-12 bottom-10 max-w-xl">
+                  <h3 className="text-2xl md:text-4xl font-extrabold mb-2">{ev.title}</h3>
+                  <p className="text-white/90 text-sm md:text-base mb-4">{ev.desc}</p>
+
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => {
+                        setActiveEventId(ev.id);
+                        setFilter(ev.tag as Filter);
+                      }}
+                      className="px-4 py-2 rounded-full bg-gradient-to-r from-[#0F3A66] via-[#174F91] to-[#1C61B4] text-white font-semibold shadow"
+                    >
+                      See Event
+                    </button>
+
+                    <button
+                      onClick={() => setSelectedImg(ev.images[0])}
+                      className="px-4 py-2 rounded-full bg-white/10 border border-white/10"
+                    >
+                      Preview Photo
+                    </button>
+                  </div>
+                </div>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
-      </div> */}
+      </div>
+
+      {/* ===================== LAYOUT WRAPPER ===================== */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10">
+        {/* ===================== LEFT COLUMN ===================== */}
+        <div className="lg:col-span-3 space-y-6">
+          {/* FILTER BOX */}
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-4 backdrop-blur-sm shadow">
+            <h4 className="font-semibold mb-3">Filter Events</h4>
+
+            <div className="flex flex-wrap gap-3">
+              {filters.map((f) => (
+                <motion.button
+                  key={f}
+                  onClick={() => {
+                    setFilter(f);
+                    const first =
+                      f === "ALL" ? bigEvents[0] : bigEvents.find((ev) => ev.tag === f);
+                    if (first) setActiveEventId(first.id);
+                  }}
+                  initial="idle"
+                  whileHover="hover"
+                  animate={filter === f ? "active" : "idle"}
+                  variants={chipVariants}
+                  className={`px-3 py-2 rounded-full text-sm font-semibold ${
+                    filter === f
+                      ? "bg-gradient-to-r from-[#0F3A66] via-[#174F91] to-[#1C61B4] text-white"
+                      : "bg-white/5 text-white/80 border border-white/10"
+                  }`}
+                >
+                  {f}
+                </motion.button>
+              ))}
+            </div>
+          </div>
+
+          {/* EVENT LIST */}
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
+            <h5 className="font-semibold mb-3">Events</h5>
+
+            <div className="space-y-3">
+              {filteredEvents.map((ev, i) => (
+                <motion.div
+                  key={ev.id}
+                  onClick={() => setActiveEventId(ev.id)}
+                  variants={cardVariants}
+                  initial="hidden"
+                  animate="show"
+                  custom={i}
+                  className={`flex items-start gap-3 p-3 rounded-lg cursor-pointer ${
+                    activeEventId === ev.id
+                      ? "bg-gradient-to-r from-[#0a1a4f] via-[#1a2e7a] to-[#27459b]"
+                      : "hover:bg-white/5"
+                  }`}
+                >
+                  <img
+                    src={ev.images[0]}
+                    className="w-14 h-14 object-cover rounded-md"
+                  />
+                  <div>
+                    <div className="text-sm font-semibold">{ev.title}</div>
+                    <div className="text-xs text-white/70">
+                      {ev.desc.slice(0, 70)}...
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA - TICKET ONLY */}
+          <button
+            onClick={() => setShowTicketModal(true)}
+            className="w-full px-4 py-3 rounded-full cursor-pointer bg-gradient-to-r from-[#0F3A66] via-[#174F91] to-[#1C61B4] text-white font-semibold shadow"
+          >
+            GET TICKET
+          </button>
+
+        </div>
+
+        {/* ===================== RIGHT COLUMN ===================== */}
+        <div className="lg:col-span-9 space-y-10">
+          {/* ACTIVE EVENT CARD */}
+          <motion.div
+            key={activeEvent.id}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="rounded-2xl p-6 bg-white/5 border border-white/10 shadow-lg backdrop-blur-lg"
+          >
+            <div className="flex flex-col md:flex-row gap-6">
+              <img
+                src={activeEvent.images[0]}
+                className="w-full md:w-64 h-44 md:h-52 object-cover rounded-xl"
+              />
+
+              <div className="flex-1">
+                <h3 className="text-2xl md:text-3xl font-extrabold">
+                  {activeEvent.title}
+                </h3>
+                <p className="text-white/80 mt-3">{activeEvent.desc}</p>
+
+                {/* Thumbnails */}
+                <div className="mt-6 flex gap-3 overflow-x-auto no-scrollbar">
+                  {activeEvent.images.map((im, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setSelectedImg(im)}
+                      className="w-24 h-16 rounded-lg overflow-hidden flex-shrink-0 hover:scale-105 transition"
+                    >
+                      <img src={im} className="w-full h-full object-cover" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* GALLERY GRID */}
+          <div>
+            <h4 className="text-xl font-bold mb-4">Gallery</h4>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {galleryImages.map((g, i) => (
+                <motion.div
+                  key={i}
+                  custom={i}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  variants={cardVariants}
+                  className="rounded-xl overflow-hidden cursor-pointer shadow-lg"
+                  onClick={() => setSelectedImg(g)}
+                >
+                  <img src={g} className="w-full h-36 md:h-48 object-cover" />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ===================== MODAL ===================== */}
+      <AnimatePresence>
+        {selectedImg && (
+          <motion.div
+            className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <div className="relative max-w-[95%] max-h-[90vh]">
+              <motion.img
+                src={selectedImg}
+                className="max-w-full max-h-[80vh] rounded-2xl object-contain shadow-2xl"
+                initial={{ scale: 0.9 }}
+                animate={{ scale: 1 }}
+                exit={{ scale: 0.9 }}
+              />
+              <button
+                onClick={() => setSelectedImg(null)}
+                className="absolute top-3 right-3 bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center"
+              >
+                <IoCloseOutline />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+            <TicketModal
+        isOpen={showTicketModal}
+        onClose={() => setShowTicketModal(false)}
+      />
+
     </section>
   );
 };
 
-export default Event;
+export default EventPremium;

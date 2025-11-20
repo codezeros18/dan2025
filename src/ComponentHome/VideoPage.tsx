@@ -1,62 +1,53 @@
-import bg from '../assets/backgroundaward.jpg'
 import React, { useRef } from "react";
-import vid from '../assets/vid1.mp4'
+import logo from "../assets/logo6.webp";
+import vid from "../assets/vid1.mp4";
 
-const VideoPage : React.FC = () => {
-    const videoRef = useRef<HTMLVideoElement | null>(null);
+const VideoPage: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const handleFullscreen = () => {
-    if (videoRef.current) {
-      if (videoRef.current.requestFullscreen) {
-        videoRef.current.requestFullscreen();
-      } else if ((videoRef.current as any).webkitEnterFullscreen) {
-        // Safari iOS
-        (videoRef.current as any).webkitEnterFullscreen();
-      }
+    if (videoRef.current?.requestFullscreen) {
+      videoRef.current.requestFullscreen();
     }
   };
+
   return (
-   <section className="min-h-screen relative flex items-center justify-center overflow-hidden">
-  {/* Background image */}
-  <img
-    src={bg} // ganti path sesuai file kamu
-    alt="Background"
-    className="absolute inset-0 w-full h-full object-cover object-top"
-  />
+    <section className="relative min-h-screen flex items-center justify-center px-6 md:px-12 py-32 overflow-hidden">
 
-  {/* Overlay gradient supaya teks lebih terbaca */}
-<div className="absolute inset-0 bg-gradient-to-b 
-  from-[#0a0a2e]/55 
-  via-[#1b174d]/45 
-  to-[#2d2470]/40">
-</div>
+      {/* watermark */}
+      <img
+        src={logo}
+        className="absolute w-[550px] opacity-[0.03] -top-32 -right-32 pointer-events-none select-none"
+      />
 
+      <div className="relative z-20 text-center max-w-4xl mx-auto">
 
+        <h2 className="text-3xl md:text-5xl font-extrabold mb-12 bg-gradient-to-r from-cyan-300 via-blue-400 to-indigo-200 bg-clip-text text-transparent">
+          Stay Sharp, Stay Strong, Stay Clean.
+        </h2>
 
-  {/* Konten utama */}
-  <div className="relative z-10 text-center px-6 md:px-12 lg:px-20">
-    <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
-      Stay Sharp <br />Stay Strong and Stay Clean
-    </h2>
+        <div
+          className="relative rounded-3xl overflow-hidden mx-auto shadow-[0_40px_120px_rgba(15,30,70,0.7)]
+          border border-white/10"
+          style={{ maxWidth: "900px" }}
+        >
+          <video
+            ref={videoRef}
+            src={vid}
+            preload="metadata"
+            playsInline
+            controls
+            onClick={handleFullscreen}
+            className="w-full h-[60vh] md:h-[75vh] object-cover rounded-3xl"
+          />
 
-<div className="max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-lg relative">
-  <video
-    ref={videoRef}
-    src={vid}
-    controls
-    className="w-full h-[60vh] md:h-full object-cover cursor-pointer"
-    onClick={handleFullscreen}
-  />
-  <div className="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded">
-    Klik video untuk fullscreen
-  </div>
-</div>
+          <div className="absolute bottom-3 right-3 bg-black/40 backdrop-blur-md px-3 py-1 rounded-md text-xs text-white">
+            Tap video to fullscreen
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
-
-  </div>
-</section>
-
-  )
-}
-
-export default VideoPage
+export default VideoPage;

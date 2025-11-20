@@ -1,153 +1,187 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import Lottie from 'lottie-react';
-import img1 from '../assets/logo6.webp';
-import menuAnimation from '../assets/menuV2.json';
+import React, { useRef, useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import Lottie from "lottie-react";
+
+// ASSETS
+import Logo from "../assets/logo6.webp";
+import menuAnimation from "../assets/menuV2.json";
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showNavbar, setShowNavbar] = useState(false);
-  const [, setIsDropdownOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const animationRef = useRef<any>(null);
+  const location = useLocation();
 
   const navItems = [
-    { nav: 'Home', link: '/' },
-    { nav: 'Events', link: '/proker' },
-    { nav: 'About Us', link: '/about' },
+    { nav: "Home", link: "/" },
+    { nav: "Events", link: "/proker" },
+    { nav: "About Us", link: "/about" },
   ];
 
   const toggleMobile = () => {
     setIsMobileMenuOpen((prev) => !prev);
 
     if (animationRef.current) {
-      animationRef.current.setSpeed(2);
+      animationRef.current.setSpeed(1.8);
       animationRef.current.setDirection(isMobileMenuOpen ? -1 : 1);
       animationRef.current.play();
     }
   };
+
   useEffect(() => {
-  if (!showNavbar && isMobileMenuOpen) {
-    setIsMobileMenuOpen(false);
+    if (!showNavbar && isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
 
-    // reset animasi hamburger ke awal
-    if (animationRef.current) {
-      animationRef.current.setDirection(-1);
-      animationRef.current.goToAndStop(0, true); // balik ke posisi "closed"
+      if (animationRef.current) {
+        animationRef.current.setDirection(-1);
+        animationRef.current.goToAndStop(0, true);
+      }
     }
-  }
-}, [showNavbar, isMobileMenuOpen]);
-
+  }, [showNavbar, isMobileMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      const current = window.scrollY;
 
-      if (currentScrollY > 10) {
-        if (currentScrollY > lastScrollY) {
-          // scrolling down → show navbar
+      if (current > 20) {
+        if (current > lastScrollY) {
           setShowNavbar(true);
-          setIsDropdownOpen(false); // ⬅️ auto tutup dropdown juga
         } else {
-          // scrolling up → hide navbar
           setShowNavbar(false);
         }
       } else {
-        // at top of page → hide navbar
         setShowNavbar(false);
       }
 
-      setLastScrollY(currentScrollY);
+      setLastScrollY(current);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
   return (
     <>
-      {/* Navbar that shows only on scroll down */}
+      {/* NAVBAR WRAPPER */}
       <AnimatePresence>
         {showNavbar && (
           <motion.div
-  initial={{ opacity: 0, y: -30 }}
-  animate={{ opacity: 1, y: 0 }}
-  exit={{ opacity: 0, y: -30 }}
-  transition={{ duration: 0.4, ease: 'easeOut' }}
-  className="fixed top-5 left-0 right-0 z-[999] px-4 md:px-12"
->
-  <div
-    className="w-full max-w-7xl mx-auto px-0 xl:px-12
-               backdrop-blur-lg shadow-md rounded-[20px]
-               bg-gradient-to-r from-[#0a1a4f]/80 via-[#1a2e7a]/80 to-[#27459b]/80"
-  >
-    <div className="flex justify-between items-center px-8 md:px-14 py-4">
-      <Link to="/">
-        <img src={img1} className="w-16 md:w-16" alt="Logo" />
-      </Link>
-
-      <ul className="hidden lg:flex space-x-8">
-        {navItems.map((item, index) => (
-          <li
-            key={index}
-            className="text-[16px] leading-[24px] font-[600] text-white transition hover:bg-gradient-to-r hover:from-indigo-400 hover:to-cyan-400 hover:bg-clip-text hover:text-transparent"
+            initial={{ opacity: 0, y: -26 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -26 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            className="fixed top-5 left-0 right-0 z-[999] px-4 md:px-12"
           >
-            <Link to={item.link}>{item.nav}</Link>
-          </li>
+            <div
+              className="
+              w-full max-w-7xl mx-auto px-0 xl:px-10
+              backdrop-blur-xl 
+              shadow-[0_8px_40px_rgba(5,10,30,0.35)]
+              rounded-2xl border border-white/10
+              relative overflow-hidden
+              "
+            >
+              {/* Cinematic Highlight Overlay */}
+              <div className="absolute inset-0 pointer-events-none rounded-2xl 
+              bg-gradient-to-br from-white/5 to-transparent mix-blend-overlay"></div>
 
-        ))}
-      </ul>
+              <div className="
+                absolute inset-0 opacity-[0.15] pointer-events-none
+                bg-gradient-to-r from-[#08152C] via-[#0A1F44] to-[#113C81]
+              " />
 
-      <div className="h-auto flex items-center justify-center lg:hidden ">
-        <button onClick={toggleMobile} className="w-12 h-12 md:w-8 md:h-8">
-<Lottie
-      animationData={menuAnimation}
-      loop={false}
-      autoplay={false}
-      lottieRef={animationRef}
-      className="invert" // ini membuat hitam → putih
-    />
-        </button>
-      </div>
-    </div>
-  </div>
-</motion.div>
+              {/* MAIN CONTENT */}
+              <div className="relative flex justify-between items-center px-8 md:px-14 py-5">
 
+                {/* LOGO */}
+                <Link to="/" className="flex items-center gap-2">
+                  <img src={Logo} className="w-14 md:w-16 drop-shadow-lg" />
+                </Link>
+
+                {/* DESKTOP NAV */}
+                <ul className="hidden lg:flex space-x-10">
+                  {navItems.map((item, index) => {
+                    const isActive = location.pathname === item.link;
+                    return (
+                      <li
+                        key={index}
+                        className={`relative text-[16px] font-semibold transition duration-200
+                        ${
+                          isActive
+                            ? "text-white after:w-full"
+                            : "text-white/80 hover:text-white after:w-0"
+                        }
+                        after:absolute after:-bottom-1 after:left-0 
+                        after:h-[2px] after:bg-gradient-to-r 
+                        after:from-cyan-300 after:to-blue-400
+                        after:rounded-full after:transition-all after:duration-300
+                        hover:after:w-full`}
+                      >
+                        <Link to={item.link}>{item.nav}</Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+
+                {/* MOBILE BUTTON */}
+                <div className="lg:hidden flex items-center justify-center">
+                  <button onClick={toggleMobile} className="w-11 h-11">
+                    <Lottie
+                      animationData={menuAnimation}
+                      loop={false}
+                      autoplay={false}
+                      lottieRef={animationRef}
+                      className="invert"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
 
-{/* Mobile Dropdown */}
-<AnimatePresence>
-  {isMobileMenuOpen && (
-    <motion.div
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -10 }}
-      transition={{ duration: 0.3 }}
-      className="fixed top-[120px] left-4 right-4 md:left-12 md:right-12 z-[998] 
-                 backdrop-blur-lg shadow-lg rounded-2xl 
-                 bg-gradient-to-r from-[#0a1a4f]/95 via-[#1a2e7a]/95 to-[#27459b]/95 
-                 border border-white/10 p-6"
-    >
-      <ul className="space-y-6 text-center">
-        {navItems.map((item, index) => (
-          <li
-            key={index}
-            className="text-lg font-semibold text-white transition 
-                       hover:bg-gradient-to-r hover:from-indigo-400 hover:to-cyan-400 
-                       hover:bg-clip-text hover:text-transparent"
+      {/* MOBILE MENU */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.35 }}
+            className="
+            fixed top-[120px] left-4 right-4 md:left-12 md:right-12 
+            z-[998] backdrop-blur-2xl shadow-2xl rounded-2xl 
+            bg-gradient-to-b from-[#0B1836]/95 via-[#112A5E]/95 to-[#163D88]/95
+            border border-white/10 p-6
+            "
           >
-            <Link to={item.link} onClick={toggleMobile}>
-              {item.nav}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </motion.div>
-  )}
-</AnimatePresence>
-
+            <ul className="space-y-6 text-center">
+              {navItems.map((item, index) => {
+                const isActive = location.pathname === item.link;
+                return (
+                  <li
+                    key={index}
+                    className={`text-lg font-semibold transition duration-300 
+                    ${
+                      isActive
+                        ? "text-white bg-clip-text"
+                        : "text-white/80 hover:text-white"
+                    }
+                    `}
+                  >
+                    <Link to={item.link} onClick={toggleMobile}>
+                      {item.nav}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

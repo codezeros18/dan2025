@@ -6,6 +6,7 @@ import Proker from './Pages/Proker';
 import ScrollToTop from './Components/ScrollToTop';
 import { useState, useEffect } from 'react';
 import Loader from './Components/LoadingScreen'; // import loader component
+import CinematicBG from './Components/CinematicBG';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -23,6 +24,7 @@ function App() {
       {!loading && (
         <Router>
           <ScrollToTop />
+                <CinematicBG /> {/* GLOBAL */}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />

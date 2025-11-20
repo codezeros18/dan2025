@@ -298,7 +298,7 @@ const Division: React.FC = () => {
 
   return (
     <div
-      className="flex items-center justify-center min-h-screen w-auto bg-gradient-to-br from-[#3d2ca6]/90 via-[#2b227a]/70 to-[#0a1a4f]/100 overflow-hidden relative select-none"
+      className="flex items-center justify-center min-h-screen md:min-h-[120vh] w-auto overflow-hidden relative select-none"
       onPointerDown={(e) => {
         const target = e.target as HTMLElement;
 
