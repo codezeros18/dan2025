@@ -211,7 +211,7 @@ const HeroSplitCinematic: React.FC = () => {
         </motion.div>
 
         {/* RIGHT — Cinematic Floating Video Frame */}
-        <motion.div className="relative w-full flex justify-center order-1 lg:order-2 px-2" variants={itemVars}>
+        <motion.div className="relative w-full hidden md:flex justify-center order-1 lg:order-2 px-2" variants={itemVars}>
           <div
             ref={frameRef}
             className="relative w-[86%] sm:w-[70%] lg:w-[90%] xl:w-[68%] rounded-3xl overflow-hidden
