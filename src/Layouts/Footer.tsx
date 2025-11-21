@@ -1,7 +1,7 @@
 import React from "react";
 import { FaInstagram, FaEnvelope } from "react-icons/fa";
-import logo from "../assets/logo6.webp";
-import logo2 from "../assets/logo3.png";
+import logo from "../assets/logo/logo6.webp";
+import logo2 from "../assets/logo/logo3.webp";
 
 const FooterLight: React.FC = () => {
   return (

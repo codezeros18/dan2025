@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import logo from "../assets/logo6.webp";
+import logo from "../assets/logo/logo6.webp";
 import vid from "../assets/vid1.mp4";
 
 const VideoPage: React.FC = () => {

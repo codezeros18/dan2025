@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import logo from "../assets/logo6.webp";
+import logo from "../assets/logo/logo6.webp";
 
 import MP1 from "../assets/mediapartner/MP1.webp";
 import MP2 from "../assets/mediapartner/MP2.webp";
@@ -48,7 +48,7 @@ const MediaPartner: React.FC = () => {
 
       <motion.div
         className="relative z-10 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-8 
-        gap-6 md:gap-10 max-w-7xl mx-auto justify-items-center"
+        gap-6 md:gap-10 max-w-7xl mx-auto justify-items-center border border-white/12 rounded-2xl p-6 md:p-10"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
@@ -66,17 +66,14 @@ const MediaPartner: React.FC = () => {
             }}
             className="
             w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 
-            rounded-2xl backdrop-blur-xl
-            bg-white/20
-            border border-white/30
-            shadow-[0_8px_25px_rgba(0,0,0,0.35)]
+            rounded-2xl
             flex items-center justify-center
-            hover:bg-white/30 hover:scale-[1.06]
+            hover:bg-white/3 hover:scale-[1.5]
             transition-all duration-300"
           >
             <img
               src={src}
-              className="w-full h-full p-4 object-contain"
+              className="w-full h-full p-4 object-contain drop-shadow-[0_0_4px_rgba(255,255,255,0.7)]"
               alt={`MediaPartner-${i}`}
             />
           </motion.div>

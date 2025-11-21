@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Lottie from "lottie-react";
 
 // ASSETS
-import Logo from "../assets/logo6.webp";
+import Logo from "../assets/logo/logo6.webp";
 import menuAnimation from "../assets/menuV2.json";
 
 const Navbar: React.FC = () => {

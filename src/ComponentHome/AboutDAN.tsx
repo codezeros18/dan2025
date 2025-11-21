@@ -2,16 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CinematicWrapper from "../Components/CinematicWrapper";
 
-import img1 from "../assets/donor5.webp";
-import img2 from "../assets/dgtss5.webp";
-import img3 from "../assets/donor7.webp";
-import img4 from "../assets/award6.webp";
-import img5 from "../assets/dgtss3.webp";
+import img1 from "../assets/donor/donor5.webp";
+import img2 from "../assets/dgts/dgtss5.webp";
+import img3 from "../assets/donor/donor7.webp";
+import img4 from "../assets/award/award6.webp";
+import img5 from "../assets/dgts/dgtss3.webp";
 
-import card1 from "../assets/dgtss1.webp";
-import card2 from "../assets/donor1.webp";
-import card3 from "../assets/award2.webp";
-import logo from "../assets/logo6.webp";
+import card1 from "../assets/dgts/dgtss1.webp";
+import card2 from "../assets/donor/donor1.webp";
+import card3 from "../assets/award/award2.webp";
+import logo from "../assets/logo/logo6.webp";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, Pagination } from "swiper/modules";
