@@ -6,6 +6,7 @@ import HeaderLayout from "../Layouts/Header";
 import AboutWrapper from "../Components/AboutWrapper";
 import AboutUsDAN from "../ComponentAbout/AboutUsDAN";
 import Division from "../Components/Division";
+import CalonDuta from "../Components/CalonDuta";
 
 const About: React.FC = () => {
   return (
@@ -16,9 +17,9 @@ const About: React.FC = () => {
       {/* Cinematic background ONLY inside AboutWrapper */}
       <AboutWrapper>
         <AboutUsDAN />
+        <CalonDuta />
         <Division />
       </AboutWrapper>
-
       <Footer />
     </div>
   );
