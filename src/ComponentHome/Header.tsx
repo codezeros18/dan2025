@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, type Variants } from "framer-motion";
 // Replace these imports with your actual asset paths if needed:
 import Vid from "../assets/vid1.mp4";
-import Logo from "../assets/logo6.webp";
+import Logo from "../assets/logo/logo6.webp";
 import TicketModal from "../Components/TicketModal";
 
 

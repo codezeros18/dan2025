@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaPlus, FaMinus } from "react-icons/fa";
-import img from "../assets/logo6.webp";
-import img1 from "../assets/dgtss1.webp";
-import img2 from "../assets/award3.webp";
-import img3 from "../assets/donor1.webp";
-import img4 from "../assets/dgts4.webp";
-import img5 from "../assets/award5.webp";
+import img from "../assets/logo/logo6.webp";
+import img1 from "../assets/dgts/dgtss1.webp";
+import img2 from "../assets/award/award3.webp";
+import img3 from "../assets/donor/donor1.webp";
+import img4 from "../assets/dgts/dgts4.webp";
+import img5 from "../assets/award/award5.webp";
 
 const images = [img1, img2, img3, img4, img5];
 
