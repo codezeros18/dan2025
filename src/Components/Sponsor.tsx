@@ -5,9 +5,10 @@ import logo from "../assets/logo/logo6.webp";
 import SP1 from "../assets/sponsor/hotma.webp";
 import SP2 from "../assets/sponsor/andhara.webp";
 import SP3 from "../assets/sponsor/soedirman.webp";
+import SP4 from "../assets/sponsor/west.webp";
 
 const MediaPartner: React.FC = () => {
-  const logos = [SP1, SP2, SP3];
+  const logos = [SP1, SP2, SP3, SP4];
 
   return (
     <section className="relative py-28 px-8 flex flex-col items-center justify-center text-center">
@@ -27,25 +28,26 @@ const MediaPartner: React.FC = () => {
 
       {/* Center Container THAT AUTO FITS CONTENT */}
       <motion.div
-        className="
-          relative z-10 
-          grid 
-          grid-cols-2 
-          gap-10 
-          justify-items-center items-center
-          px-10 py-10
-          rounded-3xl border border-white/10
-          bg-white/2 backdrop-blur-md
-          shadow-[0_0_50px_rgba(0,0,0,0.45)]
-        "
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        variants={{
-          hidden: {},
-          show: { transition: { staggerChildren: 0.12 } },
-        }}
-      >
+  className="
+    relative z-10 
+    grid 
+    grid-cols-2 sm:grid-cols-3 lg:grid-cols-4
+    gap-10 
+    justify-items-center items-center
+    px-10 py-10
+    rounded-3xl border border-white/10
+    bg-white/2 backdrop-blur-md
+    shadow-[0_0_50px_rgba(0,0,0,0.45)]
+  "
+  initial="hidden"
+  whileInView="show"
+  viewport={{ once: true }}
+  variants={{
+    hidden: {},
+    show: { transition: { staggerChildren: 0.12 } },
+  }}
+>
+
         {logos.map((src, i) => (
           <motion.div
             key={i}

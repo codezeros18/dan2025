@@ -50,7 +50,8 @@ const MediaPartner: React.FC = () => {
 
       <motion.div
         className="relative z-10 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 xl:grid-cols-8 
-        gap-6 md:gap-10 max-w-7xl mx-auto justify-items-center border border-white/12 rounded-2xl p-6 md:p-10"
+        gap-6 md:gap-10 max-w-7xl mx-auto justify-items-center border border-white/12 rounded-2xl bg-white/2 backdrop-blur-md
+    shadow-[0_0_50px_rgba(0,0,0,0.45)] p-6 md:p-10"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
