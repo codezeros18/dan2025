@@ -233,13 +233,15 @@ const EventPremium: React.FC = () => {
             </div>
           </div>
 
-          {/* CTA - TICKET ONLY */}
           <button
             onClick={() => setShowTicketModal(true)}
-            className="w-full px-4 py-3 rounded-full cursor-pointer bg-gradient-to-r from-[#0F3A66] via-[#174F91] to-[#1C61B4] text-white font-semibold shadow"
+            className="px-6 py-3 w-full rounded-full font-semibold text-white shadow-2xl
+              bg-gradient-to-r from-[#1C61B4] via-[#2174CC] to-[#2990FF]
+              hover:scale-105 transition-transform duration-200 cursor-pointer"
           >
-            GET TICKET
+            Get Ticket
           </button>
+
 
         </div>
 

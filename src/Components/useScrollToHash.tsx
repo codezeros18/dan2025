@@ -1,18 +1,16 @@
-import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export const useScrollToHash = () => {
-  const location = useLocation()
+  const { hash } = useLocation();
 
   useEffect(() => {
-    const hash = location.hash
-    if (hash) {
-      const el = document.querySelector(hash)
-      if (el) {
-        setTimeout(() => {
-          el.scrollIntoView({ behavior: 'smooth' })
-        }, 100) // small delay for mount
-      }
+    if (!hash) return;
+    const el = document.querySelector(hash);
+    if (el) {
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 300);
     }
-  }, [location])
-}
+  }, [hash]);
+};

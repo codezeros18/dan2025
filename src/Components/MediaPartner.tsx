@@ -24,12 +24,14 @@ import MP19 from "../assets/mediapartner/MP19.webp";
 import MP20 from "../assets/mediapartner/MP20.webp";
 import MP21 from "../assets/mediapartner/MP21.webp";
 import MP22 from "../assets/mediapartner/MP22.webp";
+import MP23 from "../assets/mediapartner/MP23.webp";
+import MP24 from "../assets/mediapartner/MP24.webp";
 
 const MediaPartner: React.FC = () => {
   const logos = [
     MP1, MP2, MP3, MP4, MP5, MP6, MP7, MP8, MP9, MP10,
     MP11, MP12, MP13, MP14, MP15, MP16, MP17, MP18,
-    MP19, MP20, MP21, MP22
+    MP19, MP20, MP21, MP22, MP23, MP24
   ];
 
   return (
