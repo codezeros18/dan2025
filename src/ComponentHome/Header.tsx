@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, type Variants } from "framer-motion";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // Replace these imports with your actual asset paths if needed:
 import Vid from "../assets/vid1.mp4";
 import Logo from "../assets/logo/logo6.webp";
@@ -188,13 +188,13 @@ const HeroSplitCinematic: React.FC = () => {
           </motion.p>
 
           <motion.div className="flex flex-wrap gap-4 justify-center lg:justify-start mt-4" variants={itemVars}>
-            {/* <Link
+            <Link
               to="/about#calon-duta"
               className="px-6 py-3 rounded-full font-semibold bg-white/95 text-[#0F3A66]
               hover:scale-105 transition-transform duration-200"
             >
               Calon Duta 2025
-            </Link> */}
+            </Link>
 
 
             <button
