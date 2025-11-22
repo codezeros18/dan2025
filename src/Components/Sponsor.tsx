@@ -4,9 +4,10 @@ import logo from "../assets/logo/logo6.webp";
 
 import SP1 from "../assets/sponsor/hotma.webp";
 import SP2 from "../assets/sponsor/andhara.webp";
+import SP3 from "../assets/sponsor/soedirman.webp";
 
 const MediaPartner: React.FC = () => {
-  const logos = [SP1, SP2];
+  const logos = [SP1, SP2, SP3];
 
   return (
     <section className="relative py-28 px-8 flex flex-col items-center justify-center text-center">

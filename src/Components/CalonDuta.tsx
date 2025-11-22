@@ -60,7 +60,7 @@ const CalonDuta: React.FC = () => {
             />
 
             {/* Circle Photo */}
-            <img loading="lazy"
+            <img
               src={p.img}
               alt={p.name}
               className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-full border border-white/10 shadow-md
