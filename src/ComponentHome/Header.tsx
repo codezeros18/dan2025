@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
 import { motion, type Variants } from "framer-motion";
+import { Link } from "react-router-dom";
 // Replace these imports with your actual asset paths if needed:
 import Vid from "../assets/vid1.mp4";
 import Logo from "../assets/logo/logo6.webp";
@@ -187,22 +187,20 @@ const HeroSplitCinematic: React.FC = () => {
           </motion.p>
 
           <motion.div className="flex flex-wrap gap-4 justify-center lg:justify-start mt-4" variants={itemVars}>
-            <Link to="/proker" className="px-6 py-3 rounded-full font-semibold text-white shadow-xl
-              bg-gradient-to-r from-[#0F3A66] via-[#174F91] to-[#1C61B4]
-              hover:scale-105 transition-transform duration-200">
-              Join Us
+            <Link
+              to="/about#calon-duta"
+              className="px-6 py-3 rounded-full font-semibold bg-white/95 text-[#0F3A66]
+              hover:scale-105 transition-transform duration-200"
+            >
+              Calon Duta 2025
             </Link>
 
-            <Link to="/about" className="px-6 py-3 rounded-full font-semibold bg-white/95 text-[#0F3A66]
-              hover:scale-105 transition-transform duration-200">
-              Learn More
-            </Link>
 
             <button
               onClick={() => setShowTicketModal(true)}
               className="px-6 py-3 rounded-full font-semibold text-white shadow-2xl
                 bg-gradient-to-r from-[#1C61B4] via-[#2174CC] to-[#2990FF]
-                hover:scale-105 transition-transform duration-200"
+                hover:scale-105 transition-transform duration-200 cursor-pointer"
             >
               Get Ticket
             </button>
