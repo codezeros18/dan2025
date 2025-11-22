@@ -18,7 +18,7 @@ import Makeup from "../assets/logo/makeup.webp";
 import Fm from "../assets/logo/fm.webp";
 import Pic from "../assets/logo/pic.webp";
 
-// import unknown from "../assets/divisi/unknown.webp";
+// import unknown from "../assets/divisi/unknown.png";
 
 import LintangModal from "../assets/divisi/Lintang.webp";
 import VasselModal from "../assets/divisi/Vassel.webp";
