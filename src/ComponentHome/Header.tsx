@@ -98,7 +98,7 @@ const ParticlesCanvas: React.FC<{ count?: number }> = ({ count = 36 }) => {
 ////////////////////////////////////////////////////////////////////////////////
 const ScrollIndicator: React.FC = () => (
   <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40">
-    <div className="hidden md:flex flex-col items-center gap-2">
+    <div className="hidden lg:flex flex-col items-center gap-2">
       <div className="w-9 h-16 rounded-3xl border border-white/30 flex items-start justify-center p-1 backdrop-blur">
         <div className="w-2 h-2 rounded-full bg-white/90 animate-scrollDot" />
       </div>
@@ -113,6 +113,7 @@ const ScrollIndicator: React.FC = () => (
 const HeroSplitCinematic: React.FC = () => {
   const frameRef = useRef<HTMLDivElement | null>(null);
   const [showTicketModal, setShowTicketModal] = useState(false);
+  
 
   // subtle mouse parallax on frame
   useEffect(() => {
@@ -199,8 +200,8 @@ const HeroSplitCinematic: React.FC = () => {
             <button
               onClick={() => setShowTicketModal(true)}
               className="px-6 py-3 rounded-full font-semibold text-white shadow-2xl
-                bg-gradient-to-r from-[#1C61B4] via-[#2174CC] to-[#2990FF]
-                hover:scale-105 transition-transform duration-200 cursor-pointer"
+              bg-gradient-to-r from-[#1C61B4] via-[#2174CC] to-[#2990FF]
+              hover:scale-105 transition-transform duration-200 cursor-pointer"
             >
               Get Ticket
             </button>
@@ -209,7 +210,7 @@ const HeroSplitCinematic: React.FC = () => {
         </motion.div>
 
         {/* RIGHT — Cinematic Floating Video Frame */}
-        <motion.div className="relative w-full hidden md:flex justify-center order-1 lg:order-2 px-2" variants={itemVars}>
+        <motion.div className="relative w-full hidden lg:flex justify-center order-1 lg:order-2 px-2" variants={itemVars}>
           <div
             ref={frameRef}
             className="relative w-[86%] sm:w-[70%] lg:w-[90%] xl:w-[68%] rounded-3xl overflow-hidden
@@ -249,9 +250,9 @@ const HeroSplitCinematic: React.FC = () => {
       {/* Scroll indicator */}
       <ScrollIndicator />
       <TicketModal
-  isOpen={showTicketModal}
-  onClose={() => setShowTicketModal(false)}
-/>
+        isOpen={showTicketModal}
+        onClose={() => setShowTicketModal(false)}
+      />
 
     </section>
   );

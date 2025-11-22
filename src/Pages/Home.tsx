@@ -3,6 +3,7 @@ import Header from "../ComponentHome/Header";
 import AboutDANFinal from "../ComponentHome/AboutDAN";
 import VideoPage from "../ComponentHome/VideoPage";
 import MediaPartner from "../Components/MediaPartner";
+import Sponsor from "../Components/Sponsor";
 import Footer from "../Layouts/Footer";
 
 const Home: React.FC = () => {
@@ -13,6 +14,7 @@ const Home: React.FC = () => {
       <Header />
       <AboutDANFinal />
       <VideoPage />
+      <Sponsor />
       <MediaPartner />
       <Footer />
 
