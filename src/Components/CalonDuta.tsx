@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import CharisWebp from "../assets/calonDuta/Charis Fernando Mendrofa.webp";
-import MelvinaWebp from "../assets/calonDuta/Melvina Patricia Handoyo.webp";
-import RizkyWebp from "../assets/calonDuta/Mohamad Rizky Patriotik.webp";
-import RafliWebp from "../assets/calonDuta/Mohammad Rafli Mahendra.webp";
-import NathaniaWebp from "../assets/calonDuta/Nathania Felicia Jesslyn.webp";
-import NingsihWebp from "../assets/calonDuta/Ningsih Sri Hastuti Halawa.webp";
-import RaditWebp from "../assets/calonDuta/Radit Maulana Hakim.webp";
-import RiveraWebp from "../assets/calonDuta/Rivera Manuela Tamba.webp";
-import StevenWebp from "../assets/calonDuta/Steven Ong Gunawan.webp";
+import CharisWebp from "../assets/calonDuta/charis.webp";
+import MelvinaWebp from "../assets/calonDuta/melvina.webp";
+import RizkyWebp from "../assets/calonDuta/rizky.webp";
+import RafliWebp from "../assets/calonDuta/rafli.webp";
+import NathaniaWebp from "../assets/calonDuta/nathania.webp";
+import NingsihWebp from "../assets/calonDuta/ningsih.webp";
+import RaditWebp from "../assets/calonDuta/radit.webp";
+import RiveraWebp from "../assets/calonDuta/rivera.webp";
+import StevenWebp from "../assets/calonDuta/steven.webp";
 
 interface Person {
   id: number;
@@ -60,7 +60,7 @@ const CalonDuta: React.FC = () => {
             />
 
             {/* Circle Photo */}
-            <img
+            <img loading="lazy"
               src={p.img}
               alt={p.name}
               className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-full border border-white/10 shadow-md
@@ -90,7 +90,7 @@ const CalonDuta: React.FC = () => {
               transition={{ duration: 0.35 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <img loading="lazy"
                 src={active.img}
                 className="w-40 h-40 md:w-48 md:h-48 object-cover rounded-full border border-white/20 shadow-lg mb-4"
               />

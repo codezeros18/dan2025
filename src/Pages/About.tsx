@@ -8,6 +8,7 @@ import AboutWrapper from "../Components/AboutWrapper";
 import AboutUsDAN from "../ComponentAbout/AboutUsDAN";
 import Division from "../Components/Division";
 import CalonDuta from "../Components/CalonDuta";
+import { Suspense } from "react";
 
 const About: React.FC = () => {
   useScrollToHash();
