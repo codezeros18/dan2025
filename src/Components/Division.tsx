@@ -338,7 +338,7 @@ const Division: React.FC = () => {
         {renderRing(innerItems, innerAngle, innerRadius, 70, "inner")}
       </div>
 
-      {/* Modal (same as before) */}
+      {/* Modal */}
       <AnimatePresence>
         {selectedDivision !== null && (
           <motion.div
