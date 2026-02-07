@@ -71,7 +71,7 @@ const MediaPartner: React.FC = () => {
             w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 
             rounded-2xl
             flex items-center justify-center
-            hover:bg-white/3 hover:scale-[1.5]
+            hover:bg-white/3 hover:scale-[1.3] 
             transition-all duration-300"
           >
             <img
